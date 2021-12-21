@@ -25,10 +25,45 @@ function doStuffPromise(data) {
     });
 }
 
+//
+// doStuffPromise(false).then(
+//     successMess => console.log(successMess),
+//     errorMess => console.log(errorMess)
+// );
 
-doStuffPromise(false).then(
-    successMess => console.log(successMess),
-    errorMess => console.log(errorMess)
-);
+// console.log("-------error occurred-----");
+// doStuffPromise(false)
+//     .then(
+//         () => {
+//             console.log("First doStuff resolved");
+//             return doStuffPromise(true);
+//         }
+//     )
+//     .then(
+//         () => {
+//             console.log("Second doStuff resolved");
+//         },
+//         () => {
+//             console.log("Second doStuff rejected");
+//         }
+//     );
 
-
+//with catch
+console.log("-------with catch-----");
+doStuffPromise(true)
+    .then(
+        () => {
+            console.log("First doStuff resolved");
+            return doStuffPromise(false);
+        }
+    )
+    .then(
+        () => {
+            console.log("Second doStuff resolved");
+        }
+    )
+    .catch(
+        () => {
+            console.log("An error occurred");
+        }
+    );
