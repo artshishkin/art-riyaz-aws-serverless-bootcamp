@@ -9,6 +9,10 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  `node app`
 -  `node` -> > you can run js
 
+#####  295. Node.js Basics - Modules and NPM
 
+-  `npm init`
+-  `node index`
+-  `npm install underscore --save`
 
 
