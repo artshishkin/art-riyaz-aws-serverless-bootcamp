@@ -21,5 +21,7 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  `npm install express --save`
 -  `node server`
 
+#####  297. Node.js Basics - Creating REST APIs with Express
 
+-  `npm install body-parser --save`
 

@@ -1,0 +1,21 @@
+### Response - text/plain
+POST http://localhost:3000/hello
+Content-Type: application/json
+Accept: text/plain
+
+{
+  "name": "Art",
+  "age": 38
+}
+
+### Response - application/json
+POST http://localhost:3000/hello-json
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Art",
+  "lastName": "Shyshkin",
+  "age": 38
+}
+
