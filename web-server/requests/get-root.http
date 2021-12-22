@@ -1,0 +1,5 @@
+###  GET root
+GET http://localhost:3000
+Accept: text/plain
+
+###

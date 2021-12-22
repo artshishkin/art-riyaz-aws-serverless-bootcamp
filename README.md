@@ -15,4 +15,11 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  `node index`
 -  `npm install underscore --save`
 
+#####  296. Node.js Basics - Building a Web Server and APIs with Express
+
+-  `npm init`
+-  `npm install express --save`
+-  `node server`
+
+
 
