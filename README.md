@@ -25,3 +25,8 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 
 -  `npm install body-parser --save`
 
+####  Section 1: Getting Started with Serverless Computing on AWS
+
+#####  19. Test the Setup
+
+-  `aws sts get-caller-identity`
