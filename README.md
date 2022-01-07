@@ -30,3 +30,11 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 #####  19. Test the Setup
 
 -  `aws sts get-caller-identity`
+
+####  Section 2: Serverless Foundation - AWS Lambda
+
+#####  30. Hands on Demo: Accessing Path and Query String Parameters from the Event Object
+
+-  `npm init`
+-  `npm install moment --save`
+

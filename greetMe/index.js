@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const greeting = {
     "en": "Hello",
     "fr": "Bonjour",
@@ -10,6 +12,18 @@ const greeting = {
 }
 
 exports.handler = async (event) => {
+    const name = event.pathParameters.name;
+    const {lang, ...info} = event.queryStringParameters;
 
+    const message = `${greeting[lang]}?${greeting[lang]}:${greeting["en"]}! ${name}`;
+    const response = {
+        message: message,
+        info: info,
+        timestamp: moment().unix()
+    };
 
+    return {
+        statusCode: 200,
+        body: JSON.stringify(response)
+    };
 }
