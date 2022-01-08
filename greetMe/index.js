@@ -15,7 +15,7 @@ exports.handler = async (event) => {
     const name = event.pathParameters.name;
     const {lang, ...info} = event.queryStringParameters;
 
-    const message = `${greeting[lang]}?${greeting[lang]}:${greeting["en"]}! ${name}`;
+    const message = `${greeting[lang]?greeting[lang]:greeting["en"]}! ${name}`;
     const response = {
         message: message,
         info: info,
