@@ -19,19 +19,32 @@ Resources:
       Architectures:
         - x86_64
       Events:
-        HelloWorld:
+        GreetByName:
           Type: Api
           Properties:
             Path: /greet/{name}
             Method: get
+            RestApiId: !Ref GreetingApi
+            RequestParameters:
+              - method.request.querystring.lang:
+                  Required: true
+                  Caching: false
+
+  GreetingApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Greeting Api
+      Description: Greeting API for Riyaz Sayyad Tutorial (Udemy)
+      StageName: Prod
+
 
 Outputs:
   GreetMeItalian:
     Description: "API Gateway endpoint URL for Greeting me in Italian"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Art?lang=it"
+    Value: !Sub "https://${GreetingApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Art?lang=it"
   GreetKateFrance:
     Description: "API Gateway endpoint URL for Greeting Kate in French"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Kate?lang=fr"
+    Value: !Sub "https://${GreetingApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Kate?lang=fr"
   GreetArinaDefault:
     Description: "API Gateway endpoint URL for Greeting Arina"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Arina"
+    Value: !Sub "https://${GreetingApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Arina"
