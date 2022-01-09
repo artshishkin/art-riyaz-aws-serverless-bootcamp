@@ -46,8 +46,12 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  Lambda console -> `node-resize-image-stack-ResizeImageFunction-dR...`
     -  Layers -> Add a Layer -> Specify an ARN -> Paste Layer ARN -> Add
 
+####  Section 3: Serverless Foundation - Amazon API Gateway
     
+#####  43. CORS Configuration for Lambda Proxy Integration
 
-
-
-
+-  [www.test-cors.org](https://www.test-cors.org/)
+-  Test `https://b3fsn6f2oc.execute-api.eu-north-1.amazonaws.com/Prod/greet/Arina`
+   -  `Fired XHR event: error`
+   -  Dev Tools (`Ctrl+Shift+I`)
+       -  `Access to XMLHttpRequest at 'https://b3fsn6f2oc.execute-api.eu-north-1.amazonaws.com/Prod/greet/Arina' from origin 'https://www.test-cors.org' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.`

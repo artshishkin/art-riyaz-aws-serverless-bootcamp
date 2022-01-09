@@ -13,3 +13,8 @@ Accept: application/json
 ###  Greet Nazar in non-existing language
 GET {{serverUrl}}/greet/Nazar?lang=oo
 Accept: application/json
+
+###  CORS test
+OPTIONS {{serverUrl}}/greet/Nazar
+Accept: application/json
+
