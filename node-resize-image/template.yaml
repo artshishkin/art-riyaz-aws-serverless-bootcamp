@@ -7,6 +7,9 @@ Parameters:
   AppBucketName:
     Type: String
     Description: "REQUIRED: Unique S3 bucket name to use for the app."
+  ImageMagickLayer:
+    Type: String
+    Description: "REQUIRED: ARN of Manually deployed ImageMagick Lambda Layer"
 
 Resources:
   ResizeImageFunction:
@@ -18,6 +21,8 @@ Resources:
         - x86_64
       MemorySize: 128
       Timeout: 60
+      Layers:
+        - !Ref ImageMagickLayer
       Policies:
         S3CrudPolicy:
           BucketName: !Ref AppBucketName

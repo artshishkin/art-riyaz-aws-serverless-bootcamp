@@ -7,5 +7,5 @@ s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1alt62pqr870u"
 s3_prefix = "node-resize-image-stack"
 region = "eu-north-1"
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "AppBucketName=\"art-node-resize-image\""
+parameter_overrides = "AppBucketName=\"art-node-resize-image\" ImageMagickLayer=\"arn:aws:lambda:eu-north-1:392971033516:layer:image-magick:1\""
 image_repositories = []
