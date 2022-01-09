@@ -35,6 +35,17 @@ Resources:
     Properties:
       CodeUri: calc/
       Handler: calculator.handler
+      Events:
+        Math:
+          Type: Api
+          Properties:
+            Path: /math/{operation}
+            Method: post
+            RestApiId: !Ref GreetingApi
+            RequestModel:
+              Model: MathInput
+              Required: true
+              ValidateBody: true
 
   GreetingApi:
     Type: AWS::Serverless::Api
@@ -42,11 +53,40 @@ Resources:
       Name: Greeting Api
       Description: Greeting API for Riyaz Sayyad Tutorial (Udemy)
       StageName: Prod
-      DefinitionBody:
-        Fn::Transform:
-          Name: AWS::Include
-          Parameters:
-            Location: Greeting Api-Prod-oas30-apigateway.yaml
+#      DefinitionBody:
+#        Fn::Transform:
+#          Name: AWS::Include
+#          Parameters:
+#            Location: Greeting Api-Prod-oas30-apigateway.yaml
+      Models:
+        CalcInput:
+          type: object
+          required:
+            - operation
+            - input
+          properties:
+            operation:
+              type: string
+            input:
+              type: object
+              required:
+                - operand1
+                - operand2
+              properties:
+                operand1:
+                  type: number
+                operand2:
+                  type: number
+        MathInput:
+          type: object
+          required:
+            - operand1
+            - operand2
+          properties:
+            operand1:
+              type: number
+            operand2:
+              type: number
 
 Outputs:
   GreetMeItalian:
