@@ -27,3 +27,45 @@ Content-Type: application/json
   "num1": 5,
   "num2": 3
 }
+
+###  Calculation - subtract
+POST {{serverUrl}}/math/subtract
+Accept: application/json
+Content-Type: application/json
+
+{
+  "num1": 5,
+  "num2": 3
+}
+
+###  Calculation - multiply
+POST {{serverUrl}}/math/multiply
+Accept: application/json
+Content-Type: application/json
+
+{
+  "num1": 5,
+  "num2": 3
+}
+
+###  Calculation - divide
+POST {{serverUrl}}/math/divide
+Accept: application/json
+Content-Type: application/json
+
+{
+  "num1": 48,
+  "num2": 3
+}
+
+###  Calculation - unsupported
+POST {{serverUrl}}/math/foo
+Accept: application/json
+Content-Type: application/json
+
+{
+  "num1": 48,
+  "num2": 3
+}
+
+
