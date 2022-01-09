@@ -18,6 +18,10 @@ Accept: application/json
 OPTIONS {{serverUrl}}/greet/Nazar
 Accept: application/json
 
+###  Preflight request test
+OPTIONS {{serverUrl}}/math/add
+Accept: application/json
+
 ###  Calculation - add
 POST {{serverUrl}}/math/add
 Accept: application/json
