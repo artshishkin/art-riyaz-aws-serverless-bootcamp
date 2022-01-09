@@ -4,7 +4,7 @@ info:
   description: "Greeting API for Riyaz Sayyad Tutorial (Udemy)"
   version: "1.0"
 servers:
-- url: "https://ytaqanib0d.execute-api.eu-north-1.amazonaws.com/{basePath}"
+- url: "https://gavlhwnjj1.execute-api.eu-north-1.amazonaws.com/{basePath}"
   variables:
     basePath:
       default: "/Prod"
@@ -22,16 +22,135 @@ paths:
         required: true
         schema:
           type: "string"
-      x-amazon-apigateway-request-validator: "Validate query string parameters and\
-        \ headers"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/empty"
+        required: true
+      x-amazon-apigateway-request-validator: "params-only"
       x-amazon-apigateway-integration:
         httpMethod: "POST"
         uri:
           Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GreetMeFunction.Arn}/invocations"
         passthroughBehavior: "when_no_match"
         type: "aws_proxy"
-components: {}
+    options:
+      parameters:
+      - name: "name"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+  /math/{operation}:
+    post:
+      parameters:
+      - name: "operation"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/mathinput"
+        required: true
+      responses:
+        "200":
+          description: "200 response"
+          content: {}
+      x-amazon-apigateway-request-validator: "body-only"
+      x-amazon-apigateway-integration:
+        httpMethod: "POST"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CalculatorFunction.Arn}/invocations"
+        responses:
+          default:
+            statusCode: "200"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"input\" :\
+            \ {\n    \"operand1\" : $inputRoot.num1,\n    \"operand2\" : $inputRoot.num2\n\
+            \  },\n  \"operation\" : \"$input.params('operation')\"\n}"
+        passthroughBehavior: "when_no_templates"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws"
+    options:
+      parameters:
+      - name: "operation"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: "{}\n"
+        requestTemplates:
+          application/json: "{\n  \"statusCode\" : 200\n}\n"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+components:
+  schemas:
+    mathinput:
+      required:
+      - "num1"
+      - "num2"
+      type: "object"
+      properties:
+        num1:
+          type: "number"
+        num2:
+          type: "number"
+    empty:
+      type: "object"
+      properties:
+        empty:
+          type: "string"
 x-amazon-apigateway-request-validators:
-  Validate query string parameters and headers:
+  params-only:
     validateRequestParameters: true
     validateRequestBody: false
+  body-only:
+    validateRequestParameters: false
+    validateRequestBody: true

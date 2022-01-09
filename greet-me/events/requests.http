@@ -18,3 +18,12 @@ Accept: application/json
 OPTIONS {{serverUrl}}/greet/Nazar
 Accept: application/json
 
+###  Calculation - add
+POST {{serverUrl}}/math/add
+Accept: application/json
+Content-Type: application/json
+
+{
+  "num1": 5,
+  "num2": 3
+}

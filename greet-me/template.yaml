@@ -93,12 +93,12 @@ Resources:
         MathInput:
           type: object
           required:
-            - operand1
-            - operand2
+            - num1
+            - num2
           properties:
-            operand1:
+            num1:
               type: number
-            operand2:
+            num2:
               type: number
 
 Outputs:
