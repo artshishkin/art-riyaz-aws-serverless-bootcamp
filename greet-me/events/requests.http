@@ -6,7 +6,7 @@ Accept: application/json
 GET {{serverUrl}}/greet/Kate?lang=fr
 Accept: application/json
 
-###  Greet Arina (default)
+###  Greet Arina without [lang] - 400 Bad Request
 GET {{serverUrl}}/greet/Arina
 Accept: application/json
 

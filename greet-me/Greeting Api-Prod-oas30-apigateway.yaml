@@ -1,0 +1,37 @@
+openapi: "3.0.1"
+info:
+  title: "Greeting Api"
+  description: "Greeting API for Riyaz Sayyad Tutorial (Udemy)"
+  version: "1.0"
+servers:
+- url: "https://ytaqanib0d.execute-api.eu-north-1.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: "/Prod"
+paths:
+  /greet/{name}:
+    get:
+      parameters:
+      - name: "name"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "lang"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        httpMethod: "POST"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GreetMeFunction.Arn}/invocations"
+        passthroughBehavior: "when_no_match"
+        type: "aws_proxy"
+components: {}
+x-amazon-apigateway-request-validators:
+  Validate query string parameters and headers:
+    validateRequestParameters: true
+    validateRequestBody: false

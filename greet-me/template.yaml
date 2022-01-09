@@ -36,7 +36,11 @@ Resources:
       Name: Greeting Api
       Description: Greeting API for Riyaz Sayyad Tutorial (Udemy)
       StageName: Prod
-
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: Greeting Api-Prod-oas30-apigateway.yaml
 
 Outputs:
   GreetMeItalian:
