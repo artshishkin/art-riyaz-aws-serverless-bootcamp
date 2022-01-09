@@ -25,15 +25,6 @@ Resources:
             Path: /greet/{name}
             Method: get
             RestApiId: !Ref GreetingApi
-            RequestModel:
-              Model: Empty
-              Required: false
-              ValidateBody: false
-              ValidateParameters: true
-            RequestParameters:
-              - method.request.querystring.lang:
-                  Required: true
-                  Caching: false
 
   CalculatorFunction:
     Type: AWS::Serverless::Function
@@ -47,10 +38,6 @@ Resources:
             Path: /math/{operation}
             Method: post
             RestApiId: !Ref GreetingApi
-            RequestModel:
-              Model: MathInput
-              Required: true
-              ValidateBody: true
 
   GreetingApi:
     Type: AWS::Serverless::Api
@@ -58,48 +45,11 @@ Resources:
       Name: Greeting Api
       Description: Greeting API for Riyaz Sayyad Tutorial (Udemy)
       StageName: Prod
-#      DefinitionBody:
-#        Fn::Transform:
-#          Name: AWS::Include
-#          Parameters:
-#            Location: Greeting Api-Prod-oas30-apigateway.yaml
-      Cors:
-        AllowOrigin: "'*'"
-        AllowMethods: "'GET,POST'"
-      Models:
-        Empty:
-          type: object
-          properties:
-            empty:
-              type: string
-        CalcInput:
-          type: object
-          required:
-            - operation
-            - input
-          properties:
-            operation:
-              type: string
-            input:
-              type: object
-              required:
-                - operand1
-                - operand2
-              properties:
-                operand1:
-                  type: number
-                operand2:
-                  type: number
-        MathInput:
-          type: object
-          required:
-            - num1
-            - num2
-          properties:
-            num1:
-              type: number
-            num2:
-              type: number
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: Greeting Api-Prod-oas30-apigateway.yaml
 
 Outputs:
   GreetMeItalian:
