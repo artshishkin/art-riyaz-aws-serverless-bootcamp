@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  greet-me
+
+  Sample SAM Template for greet-me
+  
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  GreetMeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: greetMe/
+      Handler: index.handler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /greet/{name}
+            Method: get
+
+Outputs:
+  GreetMeItalian:
+    Description: "API Gateway endpoint URL for Greeting me in Italian"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Art?lang=it"
+  GreetKateFrance:
+    Description: "API Gateway endpoint URL for Greeting Kate in French"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Kate?lang=fr"
+  GreetArinaDefault:
+    Description: "API Gateway endpoint URL for Greeting Arina"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/greet/Arina"
