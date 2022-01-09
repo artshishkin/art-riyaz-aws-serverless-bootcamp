@@ -55,3 +55,8 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  `Fired XHR event: error`
    -  Dev Tools (`Ctrl+Shift+I`)
        -  `Access to XMLHttpRequest at 'https://b3fsn6f2oc.execute-api.eu-north-1.amazonaws.com/Prod/greet/Arina' from origin 'https://www.test-cors.org' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.`
+-  Enable CORS Manually
+   -  API Gateway Console
+   -  ~~GET -> Add Response 200 -> Add Header -> Access-Control-Allow-Origin~~ (can not do this)
+   -  for Lambda proxy integration must provide in Lambda
+   -  Test in [www.test-cors.org](https://www.test-cors.org/) -> OK

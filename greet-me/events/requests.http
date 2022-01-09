@@ -14,7 +14,7 @@ Accept: application/json
 GET {{serverUrl}}/greet/Nazar?lang=oo
 Accept: application/json
 
-###  CORS test
+###  Preflight request test
 OPTIONS {{serverUrl}}/greet/Nazar
 Accept: application/json
 
