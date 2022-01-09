@@ -25,6 +25,11 @@ Resources:
             Path: /greet/{name}
             Method: get
             RestApiId: !Ref GreetingApi
+            RequestModel:
+              Model: Empty
+              Required: false
+              ValidateBody: false
+              ValidateParameters: true
             RequestParameters:
               - method.request.querystring.lang:
                   Required: true
@@ -59,6 +64,11 @@ Resources:
 #          Parameters:
 #            Location: Greeting Api-Prod-oas30-apigateway.yaml
       Models:
+        Empty:
+          type: object
+          properties:
+            empty:
+              type: string
         CalcInput:
           type: object
           required:
