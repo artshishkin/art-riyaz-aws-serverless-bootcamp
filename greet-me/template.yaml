@@ -63,6 +63,9 @@ Resources:
 #          Name: AWS::Include
 #          Parameters:
 #            Location: Greeting Api-Prod-oas30-apigateway.yaml
+      Cors:
+        AllowOrigin: "'*'"
+        AllowMethods: "'GET,POST'"
       Models:
         Empty:
           type: object
