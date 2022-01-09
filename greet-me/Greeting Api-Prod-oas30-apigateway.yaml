@@ -92,6 +92,8 @@ paths:
         responses:
           default:
             statusCode: "200"
+            responseTemplates:
+              application/json: "{\n    \"result\": $input.path('$.body')\n}"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"input\" :\
             \ {\n    \"operand1\" : $inputRoot.num1,\n    \"operand2\" : $inputRoot.num2\n\
