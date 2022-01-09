@@ -13,10 +13,7 @@ const greeting = {
 
 exports.handler = async (event) => {
     const name = event.pathParameters.name;
-    const lang = event.queryStringParameters ? event.queryStringParameters['lang'] : null;
-
-    const info = {...event.queryStringParameters};
-    delete info.lang;
+    const {lang, ...info} = event.queryStringParameters || {};
 
     const message = `${greeting[lang] ? greeting[lang] : greeting["en"]}! ${name}`;
     const response = {

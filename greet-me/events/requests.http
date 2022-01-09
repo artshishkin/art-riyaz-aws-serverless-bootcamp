@@ -1,0 +1,15 @@
+###  Greet Art in Italian
+GET {{serverUrl}}/greet/Art?lang=it&age=38
+Accept: application/json
+
+###  Greet Kate in French
+GET {{serverUrl}}/greet/Kate?lang=fr
+Accept: application/json
+
+###  Greet Arina (default)
+GET {{serverUrl}}/greet/Arina
+Accept: application/json
+
+###  Greet Nazar in non-existing language
+GET {{serverUrl}}/greet/Nazar?lang=oo
+Accept: application/json
