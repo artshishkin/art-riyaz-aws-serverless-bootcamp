@@ -157,15 +157,17 @@ paths:
 components:
   schemas:
     mathinput:
+      title: "Math Input"
       required:
-      - "num1"
-      - "num2"
+        - "num1"
+        - "num2"
       type: "object"
       properties:
         num1:
           type: "number"
         num2:
           type: "number"
+      description: "Input for Calculator Endpoint"
     empty:
       type: "object"
       properties:
