@@ -38,3 +38,16 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  `npm init`
 -  `npm install moment --save`
 
+#####  34.2 Adding image-magick-lambda-layer Manually
+
+-  [image-magick-lambda-layer](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:145266761615:applications~image-magick-lambda-layer)
+-  Deploy
+-  Copy Layer ARN
+-  Lambda console -> `node-resize-image-stack-ResizeImageFunction-dR...`
+    -  Layers -> Add a Layer -> Specify an ARN -> Paste Layer ARN -> Add
+
+    
+
+
+
+
