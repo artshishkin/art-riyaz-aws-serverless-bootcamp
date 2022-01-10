@@ -94,8 +94,23 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  Export
    -  OpenAPI 3 + API Gateway Extensions
 
+#####  60. Creating API Keys and Usage Plans in API Gateway
 
-
+1.  Create API Key
+   -  API Gateway Console -> API Keys -> 
+   -  Actions -> Create API Key
+   -  Name: `Dev team`
+   -  Description: `API Key for development team`
+2.  Create Usage Plan
+   -  API Gateway Console -> Usage Plans
+   -  Name: `PremiumUsagePlan`
+   -  Description: `Usage Plan for Premium Users`
+   -  Rate: `1000` requests per second
+   -  Burst: `200`
+   -  Quota: `1000000` req per month
+   -  Associated API Stages -> Add API Stage ->
+      -  Greeting API -> Prod
+   -  Add API Key to Usage Plan -> Dev team
 
 
    
