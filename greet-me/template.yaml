@@ -4,7 +4,7 @@ Description: >
   greet-me
 
   Sample SAM Template for greet-me
-  
+
 Globals:
   Function:
     Timeout: 3
@@ -52,15 +52,11 @@ Resources:
           Parameters:
             Location: Greeting Api-Prod-oas30-apigateway.yaml
       MethodSettings:
-        - LoggingLevel: INFO # Enable CloudWatch Logs
+        - LoggingLevel: INFO      # Enable CloudWatch Logs
+          DataTraceEnabled: true  # Log full requests/responses data
+          MetricsEnabled: false   # Enable Detailed CloudWatch Metrics
           ResourcePath: '/*' # allows for logging on any resource
           HttpMethod: '*' # allows for logging on any method
-        - DataTraceEnabled: false # Log full requests/responses data
-          ResourcePath: '/*'
-          HttpMethod: '*'
-        - MetricsEnabled: false # Enable Detailed CloudWatch Metrics
-          ResourcePath: '/*'
-          HttpMethod: '*'
 
   ApiCWLRoleArn:
     Type: AWS::ApiGateway::Account
