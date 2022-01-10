@@ -173,6 +173,26 @@ components:
       properties:
         empty:
           type: "string"
+    CalcInput:
+      title: "Calculator Function Input"
+      description: "Input for Calculator Lambda Function"
+      type: object
+      required:
+        - "operation"
+        - "input"
+      properties:
+        operation:
+          type: string
+        input:
+          type: object
+          required:
+            - "operand1"
+            - "operand2"
+          properties:
+            operand1:
+              type: number
+            operand2:
+              type: number
 x-amazon-apigateway-request-validators:
   params-only:
     validateRequestParameters: true
