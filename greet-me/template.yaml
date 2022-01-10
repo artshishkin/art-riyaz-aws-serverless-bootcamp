@@ -41,6 +41,7 @@ Resources:
 
   GreetingApi:
     Type: AWS::Serverless::Api
+    DependsOn: ApiCWLRoleArn
     Properties:
       Name: Greeting Api
       Description: Greeting API for Riyaz Sayyad Tutorial (Udemy)
@@ -54,12 +55,32 @@ Resources:
         - LoggingLevel: INFO # Enable CloudWatch Logs
           ResourcePath: '/*' # allows for logging on any resource
           HttpMethod: '*' # allows for logging on any method
-        - DataTraceEnabled: true # Log full requests/responses data
+        - DataTraceEnabled: false # Log full requests/responses data
           ResourcePath: '/*'
           HttpMethod: '*'
-        - MetricsEnabled: true # Enable Detailed CloudWatch Metrics
+        - MetricsEnabled: false # Enable Detailed CloudWatch Metrics
           ResourcePath: '/*'
           HttpMethod: '*'
+
+  ApiCWLRoleArn:
+    Type: AWS::ApiGateway::Account
+    Properties:
+      CloudWatchRoleArn: !GetAtt CloudWatchRole.Arn
+
+  # IAM Role for API GW + CWL
+  CloudWatchRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          Action: 'sts:AssumeRole'
+          Effect: Allow
+          Principal:
+            Service: apigateway.amazonaws.com
+      Path: /
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
 
 Outputs:
   GreetMeItalian:
