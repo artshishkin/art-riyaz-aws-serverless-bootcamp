@@ -93,6 +93,12 @@ paths:
               $ref: "#/components/schemas/mathinput"
         required: true
       responses:
+        "400":
+          description: "400 response"
+          content: {}
+        "500":
+          description: "500 response"
+          content: {}
         "200":
           description: "200 response"
           headers:
@@ -106,12 +112,19 @@ paths:
         uri:
           Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CalculatorFunction.Arn}/invocations"
         responses:
+          ".*Unsupported.*":
+            statusCode: "400"
+            responseTemplates:
+              application/json: "{\n    \"errorMessage\":\"$input.path('$.errorMessage')\"\
+                \n}"
           default:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
             responseTemplates:
               application/json: "{\n    \"result\": $input.path('$.body')\n}"
+          ".*Error.*":
+            statusCode: "500"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"input\" :\
             \ {\n    \"operand1\" : $inputRoot.num1,\n    \"operand2\" : $inputRoot.num2\n\
@@ -159,8 +172,8 @@ components:
     mathinput:
       title: "Math Input"
       required:
-        - "num1"
-        - "num2"
+      - "num1"
+      - "num2"
       type: "object"
       properties:
         num1:
