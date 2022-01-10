@@ -83,4 +83,19 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    - `API-Gateway-Execution-Logs_{rest-api-id}/{stage_name}`
    - `API-Gateway-Execution-Logs_gavlhwnjj1/Prod`
    
+#####  59. Creating API Documentation
+
+-  API Console -> Resources -> 
+   -  `math/{operation}` -> POST -> 
+   -  Actions -> Edit Method Documentation
+-  Documentation -> Publish Documentation
+   -  Stage: Prod
+   -  Version: 1.0
+-  Export
+   -  OpenAPI 3 + API Gateway Extensions
+
+
+
+
+
    
