@@ -153,9 +153,24 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
       -  WCU: 2 (for study)
    -  Create table
 
+#####  76. Hands on Demo: Performing Write Operations with AWS Console
 
-
-
-
+1.  Create Item
+   -  DynamoDB Console -> td_notes -> Create item
+   -  user_id: random String (I prefer [UUID generator](https://www.uuidgenerator.net/version4))
+   -  timestamp: random number (I prefer [unixtimestamp](https://www.unixtimestamp.com/))
+   -  note_id: some UUID
+   -  cat: `"general"`
+   -  title: `"my note"`
+   -  user_name: `"Art"`
+   -  content: `"this it the content of my note"`
+2.  Duplicate
+   -  Duplicate and modify
+   -  Repeat a couple of times
+3.  Create item without note_id
+4.  Create item without cat
+5.  Scan
+   -  through `category-index` (local sec index) -> without `cat` are absent
+   -  through `note_id-index` (global sec index) -> without `note_id` are absent
 
    
