@@ -173,4 +173,34 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  through `category-index` (local sec index) -> without `cat` are absent
    -  through `note_id-index` (global sec index) -> without `note_id` are absent
 
-   
+#####  77. Hands on Demo: Performing Read Operations with AWS Console   
+
+1.  Two Options
+   -  Scan
+   -  Query
+2.  Query by primary key   
+   -  partition key + sort key (Number)
+      -  equal, less, greater, between
+      -  sort asc/desc
+   -  **or**
+   -  just partition key
+3.  Query by local secondary index
+   -  partition key + sort key (String)
+      -  equal, less, greater, between, Begins with
+4.  Query by global secondary index
+   -  by partition key (note_id)
+5.  Filter
+   -  using non index keys
+   -  applied **after** query is performed
+      -  so it **NOT** affect your RCU using operations
+   -  Example
+      -  Query table by user_id = 1289c03b-77f6-4c7a-b5d3-0def67643a58 skipping sort key filtering:
+      -  content (String) contains `note 3`
+6.  Scan
+   -  scan operations across partitions
+
+
+
+
+
+
