@@ -100,9 +100,17 @@ paths:
       responses:
         "400":
           description: "400 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
           content: {}
         "500":
           description: "500 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
           content: {}
         "200":
           description: "200 response"
@@ -112,7 +120,7 @@ paths:
                 type: "string"
           content: {}
       security:
-        - api_key: []
+      - api_key: []
       x-amazon-apigateway-request-validator: "body-only"
       x-amazon-apigateway-integration:
         httpMethod: "POST"
@@ -121,6 +129,8 @@ paths:
         responses:
           ".*Unsupported.*":
             statusCode: "400"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
             responseTemplates:
               application/json: "{\n    \"errorMessage\":\"$input.path('$.errorMessage')\"\
                 \n}"
@@ -132,6 +142,8 @@ paths:
               application/json: "{\n    \"result\": $input.path('$.body')\n}"
           ".*Error.*":
             statusCode: "500"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"input\" :\
             \ {\n    \"operand1\" : $inputRoot.num1,\n    \"operand2\" : $inputRoot.num2\n\
@@ -222,83 +234,83 @@ x-amazon-apigateway-documentation:
   version: "1.0"
   createdDate: "2022-01-10T20:01:37Z"
   documentationParts:
-    - location:
-        type: "API"
-      properties:
-        info:
-          description: "Greeting API for Riyaz Sayyad Tutorial (Udemy)"
-    - location:
-        type: "METHOD"
-        path: "/greet/{name}"
-        method: "GET"
-      properties:
-        description: "Greeting with several languages"
-    - location:
-        type: "METHOD"
-        path: "/math/{operation}"
-        method: "POST"
-      properties:
-        description: "Allows add, subtract, multiply, delete two numbers "
-    - location:
-        type: "MODEL"
-        name: "CalcInput"
-      properties:
-        title: "Calculator Function Input"
-        description: "Input for Calculator Lambda Function"
-    - location:
-        type: "MODEL"
-        name: "mathinput"
-      properties:
-        title: "Math Input"
-        description: "Input for Calculator Endpoint"
-    - location:
-        type: "REQUEST_BODY"
-        path: "/math/{operation}"
-        method: "POST"
-      properties:
-        description: "Input for Calculator Endpoint"
-    - location:
-        type: "RESPONSE"
-        path: "/greet/{name}"
-        method: "GET"
-        statusCode: "200"
-      properties:
-        description: "200 response"
-    - location:
-        type: "RESPONSE"
-        path: "/greet/{name}"
-        method: "OPTIONS"
-        statusCode: "200"
-      properties:
-        description: "200 response"
-    - location:
-        type: "RESPONSE"
-        path: "/math/{operation}"
-        method: "OPTIONS"
-        statusCode: "200"
-      properties:
-        description: "200 response"
-    - location:
-        type: "RESPONSE"
-        path: "/math/{operation}"
-        method: "POST"
-        statusCode: "200"
-      properties:
-        description: "200 response"
-    - location:
-        type: "RESPONSE"
-        path: "/math/{operation}"
-        method: "POST"
-        statusCode: "400"
-      properties:
-        description: "400 response"
-    - location:
-        type: "RESPONSE"
-        path: "/math/{operation}"
-        method: "POST"
-        statusCode: "500"
-      properties:
-        description: "500 response"
+  - location:
+      type: "API"
+    properties:
+      info:
+        description: "Greeting API for Riyaz Sayyad Tutorial (Udemy)"
+  - location:
+      type: "METHOD"
+      path: "/greet/{name}"
+      method: "GET"
+    properties:
+      description: "Greeting with several languages"
+  - location:
+      type: "METHOD"
+      path: "/math/{operation}"
+      method: "POST"
+    properties:
+      description: "Allows add, subtract, multiply, delete two numbers "
+  - location:
+      type: "MODEL"
+      name: "CalcInput"
+    properties:
+      title: "Calculator Function Input"
+      description: "Input for Calculator Lambda Function"
+  - location:
+      type: "MODEL"
+      name: "mathinput"
+    properties:
+      title: "Math Input"
+      description: "Input for Calculator Endpoint"
+  - location:
+      type: "REQUEST_BODY"
+      path: "/math/{operation}"
+      method: "POST"
+    properties:
+      description: "Input for Calculator Endpoint"
+  - location:
+      type: "RESPONSE"
+      path: "/greet/{name}"
+      method: "GET"
+      statusCode: "200"
+    properties:
+      description: "200 response"
+  - location:
+      type: "RESPONSE"
+      path: "/greet/{name}"
+      method: "OPTIONS"
+      statusCode: "200"
+    properties:
+      description: "200 response"
+  - location:
+      type: "RESPONSE"
+      path: "/math/{operation}"
+      method: "OPTIONS"
+      statusCode: "200"
+    properties:
+      description: "200 response"
+  - location:
+      type: "RESPONSE"
+      path: "/math/{operation}"
+      method: "POST"
+      statusCode: "200"
+    properties:
+      description: "200 response"
+  - location:
+      type: "RESPONSE"
+      path: "/math/{operation}"
+      method: "POST"
+      statusCode: "400"
+    properties:
+      description: "400 response"
+  - location:
+      type: "RESPONSE"
+      path: "/math/{operation}"
+      method: "POST"
+      statusCode: "500"
+    properties:
+      description: "500 response"
 x-amazon-apigateway-request-validators:
   params-only:
     validateRequestParameters: true
