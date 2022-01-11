@@ -1,18 +1,26 @@
 ###  Greet Art in Italian
 GET {{serverUrl}}/greet/Art?lang=it&age=38
 Accept: application/json
+x-api-key: {{apiKey}}
+
+###  Greet Art in Italian WITHOUT API Key -> Forbidden
+GET {{serverUrl}}/greet/Art?lang=it&age=38
+Accept: application/json
 
 ###  Greet Kate in French
 GET {{serverUrl}}/greet/Kate?lang=fr
 Accept: application/json
+x-api-key: {{apiKey}}
 
 ###  Greet Arina without [lang] - 400 Bad Request
 GET {{serverUrl}}/greet/Arina
 Accept: application/json
+x-api-key: {{apiKey}}
 
 ###  Greet Nazar in non-existing language
 GET {{serverUrl}}/greet/Nazar?lang=oo
 Accept: application/json
+x-api-key: {{apiKey}}
 
 ###  Preflight request test
 OPTIONS {{serverUrl}}/greet/Nazar
@@ -26,6 +34,17 @@ Accept: application/json
 POST {{serverUrl}}/math/add
 Accept: application/json
 Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "num1": 5,
+  "num2": 3
+}
+
+###  Calculation - FORBIDDEN
+POST {{serverUrl}}/math/add
+Accept: application/json
+Content-Type: application/json
 
 {
   "num1": 5,
@@ -36,6 +55,7 @@ Content-Type: application/json
 POST {{serverUrl}}/math/subtract
 Accept: application/json
 Content-Type: application/json
+x-api-key: {{apiKey}}
 
 {
   "num1": 5,
@@ -46,6 +66,7 @@ Content-Type: application/json
 POST {{serverUrl}}/math/multiply
 Accept: application/json
 Content-Type: application/json
+x-api-key: {{apiKey}}
 
 {
   "num1": 5,
@@ -56,6 +77,7 @@ Content-Type: application/json
 POST {{serverUrl}}/math/divide
 Accept: application/json
 Content-Type: application/json
+x-api-key: {{apiKey}}
 
 {
   "num1": 48,
@@ -66,6 +88,7 @@ Content-Type: application/json
 POST {{serverUrl}}/math/foo
 Accept: application/json
 Content-Type: application/json
+x-api-key: {{apiKey}}
 
 {
   "num1": 48,

@@ -112,5 +112,18 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
       -  Greeting API -> Prod
    -  Add API Key to Usage Plan -> Dev team
 
+#####  61. Passing API Keys with API Gateway Requests
+
+-  API Console ->
+   -  `greet/{name}` -> GET -> Method Execution ->
+   -  API Key Required -> true
+   -  same for the POST
+-  HTTP Request
+   -  Add header
+   -  x-api-key: {{apiKey}}
+
+
+
+
 
    
