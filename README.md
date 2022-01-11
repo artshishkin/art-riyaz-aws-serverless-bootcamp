@@ -122,6 +122,38 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  Add header
    -  x-api-key: {{apiKey}}
 
+####  Section 4: Serverless Foundation - Amazon DynamoDB
+
+#####  75. Hands on Demo: Creating the DynamoDB Table
+
+-  DynamoDB Console
+-  Create Table
+   -  Table name: `td_notes`
+   -  Primary key:
+      -  Partition key: `user_id` String
+      -  Sort key: `timestamp` Number
+   -  Customize Settings   
+   -  Secondary indexes
+      -  New **Local** Secondary Index
+         -  Sort key: `title` String
+         -  Index name: `title-index`
+         -  Attribute projections: `All`
+      -  New **Local** Secondary Index
+         -  Sort key: `cat` String
+         -  Index name: `category-index`
+         -  Attribute projections: `All`
+      -  New **Global** Index
+         -  Partition key: `note_id` String
+         -  Sort key: no
+         -  Index name: note_id-index
+         -  Attribute projections: `All`
+   -  Capacity
+      -  Autoscaling: OFF
+      -  RCU: 2 (for study)
+      -  WCU: 2 (for study)
+   -  Create table
+
+
 
 
 
