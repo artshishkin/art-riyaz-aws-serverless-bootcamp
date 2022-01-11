@@ -199,8 +199,8 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 6.  Scan
    -  scan operations across partitions
 
+#####  79. Hands on Demo: Working with DynamoDB with AWS SDK – Getting Ready
 
-
-
-
+-  `npm init`
+-  `npm install aws-sdk --save`
 
