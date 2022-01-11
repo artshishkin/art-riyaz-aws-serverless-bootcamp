@@ -3,7 +3,7 @@ AWS.config.update({region: 'eu-north-1'});
 
 const dynamoDB = new AWS.DynamoDB();
 
-const operation = "listTables";
+const operation = "createTable";
 
 switch (operation) {
     case "listTables":
