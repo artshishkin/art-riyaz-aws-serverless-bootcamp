@@ -1,0 +1,5 @@
+### Lambda version test
+GET {{serverUrl}}/lambda
+Accept: application/json
+
+###

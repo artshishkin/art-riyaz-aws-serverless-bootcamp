@@ -242,3 +242,32 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  `Edit code` or switch to the `$LATEST`
    -  Add comment, Deploy   
    -  Publish new version
+
+#####  89. The Need for Lambda Aliases
+
+-  API Gateway -> Greeting API ->
+   -  create Resource: `/lambda`
+   -  create Method: GET
+   -  Lambda `arn:aws:lambda:eu-north-1:392971033516:function:event-logging-function`
+   -  Test -> got result with Lambda version `$LATEST`
+-  Using versioned Lambda
+   -  API Gateway -> `/lambda` -> GET -> Lambda function
+   -  `event-logging-function:1`
+   -  Deploy  
+   -  Test -> got result with Lambda version `1`
+   -  Ones again for version 2
+-  Workflow without aliases
+   -  modify lambda code
+   -  publish new version
+   -  api gateway console
+   -  integration request
+   -  modify used lambda version
+   -  give the necessary IAM permissions
+   -  **deploy API**
+
+
+
+
+
+
+

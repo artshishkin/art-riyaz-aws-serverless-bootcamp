@@ -81,6 +81,23 @@ paths:
           application/json: "{\n  \"statusCode\" : 200\n}\n"
         passthroughBehavior: "when_no_match"
         type: "mock"
+  /lambda:
+    get:
+      responses:
+        "200":
+          description: "200 response"
+          content: {}
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:392971033516:function:event-logging-function:3/invocations"
+        responses:
+          default:
+            statusCode: "200"
+        requestTemplates:
+          application/json: "{\n    \"stage\":\"$context.stage\"\n}"
+        passthroughBehavior: "when_no_templates"
+        contentHandling: "CONVERT_TO_TEXT"
   /math/{operation}:
     post:
       description: "Allows add, subtract, multiply, delete two numbers "
