@@ -204,3 +204,6 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  `npm init`
 -  `npm install aws-sdk --save`
 
+#####  87. Hands on Demo: Performing Paginated Reads with AWS SDK
+
+-  `npm install async underscore --save`
