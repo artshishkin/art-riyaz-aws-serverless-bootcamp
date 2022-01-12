@@ -207,3 +207,38 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 #####  87. Hands on Demo: Performing Paginated Reads with AWS SDK
 
 -  `npm install async underscore --save`
+
+####  Section 5: Serverless Deep Dive - Lambda, Gateway, DynamoDB
+
+#####  88. Lambda Versions
+
+-  test function -> result
+```json
+{
+  "key1": "value1",
+  "key2": "value2",
+  "key3": "value3",
+  "lambdaFunction": "event-logging-function",
+  "lambdaVersion": "$LATEST"
+}
+```
+-  Publish new Version
+   -  Actions -> Publish new Version
+   -  Description: v1
+-  View -> `arn:aws:lambda:eu-north-1:392971033516:function:event-logging-function:1`
+   -  `1` - is version number
+   -  Test
+```json
+{
+  "key1": "value1",
+  "key2": "value2",
+  "key3": "value3",
+  "lambdaFunction": "event-logging-function",
+  "lambdaVersion": "1"
+}
+```   
+-  Modify code:
+   -  `Code and handler editing is only available on the unpublished function page.`
+   -  `Edit code` or switch to the `$LATEST`
+   -  Add comment, Deploy   
+   -  Publish new version
