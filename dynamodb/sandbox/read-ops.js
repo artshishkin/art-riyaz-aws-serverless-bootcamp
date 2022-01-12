@@ -23,7 +23,7 @@ const itemKey = {
     "timestamp": item.timestamp
 };
 
-const operation = "scanGlobalIndexFiltered";
+const operation = "batchGet";
 
 switch (operation) {
     case "get":
@@ -57,6 +57,10 @@ switch (operation) {
         break;
     case "scanGlobalIndexFiltered":
         scanGlobalIndexFiltered();
+        break;
+    // batchGet
+    case "batchGet":
+        batchGet();
         break;
 }
 
@@ -174,3 +178,37 @@ function scanGlobalIndexFiltered() {
     docClient.scan(params, defaultCallback);
 }
 
+function batchGet() {
+    const params = {
+        RequestItems: {
+            "td_notes_sdk": {
+                Keys: [
+                    {
+                        "user_id": "1",
+                        "timestamp": 1641932416975,
+                    },
+                    {
+                        "user_id": "3",
+                        "timestamp": 1641932416975,
+                    }
+                ]
+            },
+            "td_notes": {
+                Keys: [
+                    {
+                        "user_id": "c1826577-2abb-4cd0-b8ea-c0890cc4ddde",
+                        "timestamp": 1641902942,
+                    },
+                    {
+                        "user_id": "1289c03b-77f6-4c7a-b5d3-0def67643a58",
+                        "timestamp": 1641903407,
+                    }
+                ]
+            }
+        }
+    };
+    docClient.batchGet(params, (err, data) => {
+        if (err) console.log(err)
+        else console.log(JSON.stringify(data, null, 2));
+    });
+}
