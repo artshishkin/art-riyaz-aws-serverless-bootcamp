@@ -23,12 +23,13 @@ const itemKey = {
     "timestamp": item.timestamp
 };
 
-const operation = "queryGlobalIndexFiltered";
+const operation = "scanGlobalIndexFiltered";
 
 switch (operation) {
     case "get":
         getItem(itemKey);
         break;
+    //Query
     case "queryTableGetAllItemsOfUser":
         queryTableGetAllItemsOfUser(itemKey.user_id);
         break;
@@ -44,7 +45,19 @@ switch (operation) {
     case "queryGlobalIndexFiltered":
         queryGlobalIndexFiltered();
         break;
-
+    //Scan
+    case "scanTable":
+        scanTable();
+        break;
+    case "scanLocalIndex":
+        scanLocalIndex();
+        break;
+    case "scanLocalIndexFiltered":
+        scanLocalIndexFiltered();
+        break;
+    case "scanGlobalIndexFiltered":
+        scanGlobalIndexFiltered();
+        break;
 }
 
 function getItem(key) {
@@ -119,3 +132,45 @@ function queryGlobalIndexFiltered() {
     };
     docClient.query(params, defaultCallback);
 }
+
+function scanTable() {
+    const params = {
+        TableName: "td_notes_sdk"
+    };
+    docClient.scan(params, defaultCallback);
+}
+
+function scanLocalIndex() {
+    const params = {
+        TableName: "td_notes_sdk",
+        IndexName: "title-index"
+    };
+    docClient.scan(params, defaultCallback);
+}
+
+function scanLocalIndexFiltered() {
+    const params = {
+        TableName: "td_notes_sdk",
+        IndexName: "title-index",
+        FilterExpression: "begins_with(note_id,:noteStart) AND contains(content,:contentPart)",
+        ExpressionAttributeValues: {
+            ":noteStart": "note_",
+            ":contentPart": "note1"
+        }
+    };
+    docClient.scan(params, defaultCallback);
+}
+
+function scanGlobalIndexFiltered() {
+    const params = {
+        TableName: "td_notes_sdk",
+        IndexName: "note_id-index",
+        FilterExpression: "begins_with(note_id,:noteStart) AND contains(content,:contentPart)",
+        ExpressionAttributeValues: {
+            ":noteStart": "note_",
+            ":contentPart": "note1"
+        }
+    };
+    docClient.scan(params, defaultCallback);
+}
+
