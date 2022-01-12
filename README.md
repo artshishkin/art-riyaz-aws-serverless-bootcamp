@@ -284,8 +284,26 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  **no need to redeploy** API Gateway
    -  Test: `"lambdaVersion": "4"`
 
+#####  92. Stage Variables in API Gateway
 
-
+-  Stages:
+   -  Test
+   -  Prod
+-  Add Stage variable
+   -  eventLoggerAlias
+      -  for Test Stage: `test`
+      -  for Prod Stage: `prod`
+-  Provide Lambda alias through Stage variable
+   -  Resources -> `/lambda` -> GET -> Int.Request -> Lambda Function
+   -  `event-logging-function:${stageVariables.eventLoggerAlias}`
+      -  Add Permission to Lambda Function
+      -  Warning message with command
+      -  `aws lambda add-permission   --function-name "arn:aws:lambda:eu-north-1:392971033516:function:event-logging-function:${stageVariables.eventLoggerAlias}"   --source-arn "arn:aws:execute-api:eu-north-1:392971033516:7apx5c3x79/*/GET/lambda"   --principal apigateway.amazonaws.com   --statement-id 5f811966-4bd1-4fe6-babc-8ef656f8b3ab   --action lambda:InvokeFunction`
+      -  Run this command **for each stage alias** 
+-  Deploy API
+   -  Deploy Test Stage
+   -  Deploy Prod Stage
+-  Test   
 
 
 
