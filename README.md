@@ -265,6 +265,24 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  give the necessary IAM permissions
    -  **deploy API**
 
+#####  90. Lambda Aliases
+
+-  Lambda Console -> Create alias
+   -  Name: `prod`
+   -  Description: `Alias for Prod Stage`
+   -  Version: `3`
+   -  Create
+-  Create another alias
+   -  Name: `test`
+   -  Version: `$LATEST`
+-  Use Version Alias in API Gateway
+   -  `/lambda` -> GET -> Lambda Function -> `event-logging-function:test`
+   -  Test -> got result with Lambda version `$LATEST`
+-  Update Lambda
+   -  Deploy new Version
+   -  Point alias test to new version
+   -  **no need to redeploy** API Gateway
+   -  Test: `"lambdaVersion": "4"`
 
 
 
