@@ -305,5 +305,15 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  Deploy Prod Stage
 -  Test   
 
+#####  93. Traffic Shifting between Lambda Versions using Aliases
 
-
+-  Lambda -> Functions -> event-logging-function -> Alias: prod
+   -  General Configuration -> Edit
+   -  Version: 3
+   -  Weighted Alias
+      -  Additional version: 4 
+      -  Weight: 10% (for study purpose 40%)
+   -  Save
+-  Invoke several times
+   -  `Section5-DeepDive\requests.http`
+-  Move to 100% 
