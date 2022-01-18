@@ -317,3 +317,22 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 -  Invoke several times
    -  `Section5-DeepDive\requests.http`
 -  Move to 100% 
+
+#####  94. Canary Deployments in API Gateway
+
+-  API Gateway -> Stages -> Prod -> Canary -> Create Canary
+   -  Percentage of requests directed to Canary: 50
+-  Resources -> `/lambda` -> GET -> Integration Request
+   -  Mapping Template
+```json
+{
+    "stage":"$context.stage",
+    "timestamp": "$context.requestTime"
+}
+```   
+-  Deploy to Prod (Canary enabled)
+-  Invoke several times
+   -  `Section5-DeepDive\requests.http`
+   - 50/50 w/wo timestamp
+-  Promote Canary
+-  Delete Canary
