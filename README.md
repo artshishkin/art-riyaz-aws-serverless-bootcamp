@@ -362,6 +362,17 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  Define key usage permissions: art_admin, event-logging-function-role-l6gd2i7g
    -  Create
 
+#####  97. Encrypting Environment Variables using KMS
+
+-  Lambda console
+-  Edit Environment variables
+   -  AWS KMS key to encrypt at rest
+      -  Use a customer master key: `LambdaCustom`
+   -  Enable helpers for encryption in transit
+   -  Encrypt `APP_SECRET`
+   -  Decription Code Snippet 
+-  Test in console -> OK   
+
 
 
 
