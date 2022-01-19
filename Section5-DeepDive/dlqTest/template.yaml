@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  dlqTest
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+
+  DLQTestFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: A Lambda function for testing Dead Letter Queue.
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Handler: src/handlers/dlq-test-function.handler
+      MemorySize: 128
+      Timeout: 2
+      Policies:
+        - AWSLambdaBasicExecutionRole
