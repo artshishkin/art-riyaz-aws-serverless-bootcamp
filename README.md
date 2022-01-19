@@ -348,4 +348,20 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  Save
 -  Test through console
 
+#####  96. Creating the KMS Encryption Keys
+
+-  Lambda console
+-  Edit Environment variables
+   -  Enable helpers for encryption in transit
+   -  Need to create KMS key (user managed)
+-  KMS -> Customer Managed Keys -> Create key
+   -  Symmetric
+   -  Alias: LambdaCustom
+   -  Description: Lambda Custom KMS Key
+   -  Define key administrative permissions: art_admin, art_mfa
+   -  Define key usage permissions: art_admin, event-logging-function-role-l6gd2i7g
+   -  Create
+
+
+
 
