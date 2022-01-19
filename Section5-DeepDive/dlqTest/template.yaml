@@ -7,6 +7,12 @@ Transform:
 
 Resources:
 
+  LambdaAsyncTrigger:
+    Type: AWS::SNS::Topic
+
+  DeadLetterQueue:
+    Type: AWS::SQS::Queue
+
   DLQTestFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -17,5 +23,13 @@ Resources:
       Handler: src/handlers/dlq-test-function.handler
       MemorySize: 128
       Timeout: 2
+      DeadLetterQueue:
+        Type: SQS
+        TargetArn: !GetAtt DeadLetterQueue.Arn
       Policies:
         - AWSLambdaBasicExecutionRole
+      Events:
+        SNSTrigger:
+          Type: SNS
+          Properties:
+            Topic: !Ref LambdaAsyncTrigger
