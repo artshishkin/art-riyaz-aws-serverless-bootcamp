@@ -395,7 +395,40 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
       -  Default VPC security group
 -  Test lambda in the console
 
+#####  102. Testing Retry Behavior and DLQs in AWS Lambda
 
-
-
+-  SNS console
+   -  `dlq-test-LambdaAsyncTrigger-VWHYXUTS4W2S`
+   -  Publish message:
+      -  `Triggering Lambda function dlqTest`
+-  Lambda CloudWatch Logs
+   -  Error
+   -  Retry in 60 sec
+   -  Another retry in ~120 sec
+-  SQS console
+   -  Poll for messages
+```json
+{
+   "Records": [
+      {
+         "EventSource": "aws:sns",
+         "EventVersion": "1.0",
+         "EventSubscriptionArn": "arn:aws:sns:eu-north-1:392971033516:dlq-test-LambdaAsyncTrigger-VWHYXUTS4W2S:6b87912b-920f-4050-bd3d-7861a7181ec5",
+         "Sns": {
+            "Type": "Notification",
+            "MessageId": "71ce0149-086e-531e-b7c8-5b2b3e2baf26",
+            "TopicArn": "arn:aws:sns:eu-north-1:392971033516:dlq-test-LambdaAsyncTrigger-VWHYXUTS4W2S",
+            "Subject": null,
+            "Message": "Triggering Lambda function dlqTest",
+            "Timestamp": "2022-01-19T15:53:41.924Z",
+            "SignatureVersion": "1",
+            "Signature": "KPdHd2fRJYjgNTOyc2P1m7l4DA7KV5/G8uBezLJLePgyYMNJBEjIsx+aM5D/e1vGor2nmYSIvysBR5uOMpZzejbDDcKCb86V3WXdQIv0EOMu9NGIpPRu7QJzQAWGnPmaFA0jP2jV14B8SBK1HPxEgyngYApcLDAG9D6DK0d6uFLsgoQt/MEMwev5TbfEoRA63iR397Zh0N11zWm7+bLPPY095GDI3teodyVXlA1ORZ/0+tqCn3X2df6LOvqCa7mG5JDfc9FONzrzEWSnv42614LrhauOcYurBKE0iPj7Lw9perR8i+gWHtN4/tywQFwpFtJVBvDStyQdqLTAiFxAEA==",
+            "SigningCertUrl": "https://sns.eu-north-1.amazonaws.com/SimpleNotificationService-7ff5318490ec183fbaddaa2a969abfda.pem",
+            "UnsubscribeUrl": "https://sns.eu-north-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-north-1:392971033516:dlq-test-LambdaAsyncTrigger-VWHYXUTS4W2S:6b87912b-920f-4050-bd3d-7861a7181ec5",
+            "MessageAttributes": {}
+         }
+      }
+   ]
+}
+```   
 
