@@ -373,6 +373,29 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    -  Decription Code Snippet 
 -  Test in console -> OK   
 
+#####  98. Running Lambda inside the VPC
+
+-  Lambda function:
+   -  `getRandomMessage`
+   -  edit VPC
+   -  attach this function to the default VPC
+   -  Security group:
+      -  Default VPC security group
+   -  Need to create role with permission to access to VPC      
+-  IAM
+   -  Create custom role:
+      -  Use case: `Lambda`
+      -  Attach permissions policies: `AWSLambdaVPCAccessExecutionRole`   
+      -  Role name: `lambda_vpc`
+-  Lambda console   
+   -  Attach role `lambda_vpc` to the Lambda 
+   -  edit VPC
+   -  attach this function to the default VPC
+   -  Security group:
+      -  Default VPC security group
+-  Test lambda in the console
+
+
 
 
 
