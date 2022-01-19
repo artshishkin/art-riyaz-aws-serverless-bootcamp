@@ -3,5 +3,8 @@ exports.handler = async (event, context) => {
     log.lambdaFunction = context.functionName;
     log.lambdaVersion = context.functionVersion;
 
+    log.appName = process.env.APP_NAME;
+    log.appSecret = process.env.APP_SECRET;
+
     return log;
 };

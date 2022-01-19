@@ -336,3 +336,16 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
    - 50/50 w/wo timestamp
 -  Promote Canary
 -  Delete Canary
+
+#####  95. Using Environment Variables in Lambda
+
+-  Lambda Console
+   - `event-logging-function`
+   -  Configuration
+   -  Environment variables -> Edit -> Add
+      -  `APP_NAME`: `My App`
+      -  `APP_SECRET`: `SUPER_SECRET_PASSWORD`
+   -  Save
+-  Test through console
+
+
