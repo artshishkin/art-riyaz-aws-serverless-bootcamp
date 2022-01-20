@@ -26,6 +26,9 @@ Resources:
               Action:
                 - lambda:InvokeFunction
               Resource: !GetAtt CalculatorFunction.Arn
+      Environment:
+        Variables:
+          CALCULATOR_FUNCTION_NAME: !Ref CalculatorFunction
 
   CalculatorFunction:
     Type: AWS::Serverless::Function
