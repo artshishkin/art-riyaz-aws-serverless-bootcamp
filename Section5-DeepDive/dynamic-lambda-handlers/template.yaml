@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  dynamic-lambda-handlers
+
+  Sample SAM Template for dynamic-lambda-handlers
+  
+Globals:
+  Function:
+    Timeout: 3
+    Runtime: nodejs14.x
+    Architectures:
+      - x86_64
+    CodeUri: src/
+
+Resources:
+
+  CalculateSquareFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: calculateSquare.lambdaHandler
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !GetAtt CalculatorFunction.Arn
+
+  CalculatorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: calculator.handler

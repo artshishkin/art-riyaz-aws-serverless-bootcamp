@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "dynamic-lambda-handler"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1alt62pqr870u"
+s3_prefix = "dynamic-lambda-handler"
+region = "eu-north-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
