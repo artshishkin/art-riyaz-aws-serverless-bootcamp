@@ -432,3 +432,21 @@ AWS Lambda &amp; Serverless Architecture Bootcamp (Build 5 Apps) - Tutorial from
 }
 ```   
 
+#####  109. Controlling Access with Standard IAM Roles and Policies
+
+Create user for testing
+-  IAM -> Users
+   -  Add users
+      -  Name: `apigw-user`
+      -  `Access key - Programmatic access`
+   -  Create user (wo permissions)
+      -  Access key ID: `AKIAVW7XGDOWFLXUJMBT`
+      -  Secret access key: `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`
+-  Add permissions
+   -  User `apigw-user`
+   -  Add inline policy
+      -  Service: ExecuteAPI
+      -  Actions: Invoke
+      -  Resources: `arn:aws:execute-api:eu-north-1:392971033516:059fs536ub/*/GET/hello`
+      -  Review the policy:
+         -  Name: ExecuteAPI
