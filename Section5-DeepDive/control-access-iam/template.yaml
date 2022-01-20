@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  control-access-iam
+
+  Sample SAM Template for control-access-iam
+  
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+
+  ControlAccessApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Control Access Api
+      Description: Control Access API for Riyaz Sayyad Tutorial (Udemy)
+      StageName: Prod
+      Auth:
+        DefaultAuthorizer: AWS_IAM
+
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: hello-world/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /hello
+            Method: get
+            RestApiId: !Ref ControlAccessApi
+
+Outputs:
+  ControlAccessApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ControlAccessApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello"
