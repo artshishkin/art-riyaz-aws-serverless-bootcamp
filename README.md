@@ -450,3 +450,6 @@ Create user for testing
       -  Resources: `arn:aws:execute-api:eu-north-1:392971033516:059fs536ub/*/GET/hello`
       -  Review the policy:
          -  Name: ExecuteAPI
+-  Modify invocation credentials
+   -  Invoke with caller credentials: `false`
+   -  Deploy API
