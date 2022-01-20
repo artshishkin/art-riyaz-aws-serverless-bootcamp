@@ -453,3 +453,12 @@ Create user for testing
 -  Modify invocation credentials
    -  Invoke with caller credentials: `false`
    -  Deploy API
+-  Test in Postman
+   -  Authorization:
+      -  AWS Signature
+         -  Provide correct AccessKey, SecretKey and Region
+   -  GET `https://059fs536ub.execute-api.eu-north-1.amazonaws.com/Prod/hello`
+
+
+
+   
