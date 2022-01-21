@@ -474,4 +474,28 @@ Generate JWT token
 -  jwt: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMSIsIm5hbWUiOiJBcnQgU2h5c2hraW4iLCJpYXQiOjE1MTYyMzkwMjIsImRhdGEiOiJNeSBjdXN0b20gZGF0YSJ9.hAQ9JZGH2dxRPIL9W2th1UJMhNKZa4mZd7fLYUFQK-w`
 -  install `jwt-decode`
    -  `npm install jwt-decode --save`
+
+#####  115. Creating AWS Cognito User Pools for API Gateway Authorization
+
+-  Cognito console ->
+   -  Manage User Pools -> Create a user pool
+   -  Pool name: `riyaz-demo-pool`
+   -  Step through settings:
+   -  Just username
+   -  Which standard attributes do you want to require -> uncheck `email`
+   -  What password strength: 8, lowercase letters
+   -  No MFA, no email or phone verification
+   -  App client
+      -  Add app client
+      -  Name: `Riyaz Demo Client`
+      -  Generate client secret: **no**
+      -  ALLOW_ADMIN_USER_PASSWORD_AUTH: false
+      -  ALLOW_CUSTOM_AUTH: false
+      -  ALLOW_USER_PASSWORD_AUTH: true
+      -  ALLOW_USER_SRP_AUTH: false
+      -  ALLOW_REFRESH_TOKEN_AUTH: true
+
+
+
+
    
