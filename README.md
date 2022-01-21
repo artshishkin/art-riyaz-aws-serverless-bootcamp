@@ -459,6 +459,18 @@ Create user for testing
          -  Provide correct AccessKey, SecretKey and Region
    -  GET `https://059fs536ub.execute-api.eu-north-1.amazonaws.com/Prod/hello`
 
+#####  111. Creating Lambda Authorizers for API Gateway Access Control
 
+Generate JWT token
+-  use [JWT.io](https://jwt.io/)
+```json
+{
+    "sub": "user1",
+    "name": "Art Shyshkin",
+    "iat": 1516239022,
+    "data": "My custom data"
+}
+```
+-  jwt: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMSIsIm5hbWUiOiJBcnQgU2h5c2hraW4iLCJpYXQiOjE1MTYyMzkwMjIsImRhdGEiOiJNeSBjdXN0b20gZGF0YSJ9.hAQ9JZGH2dxRPIL9W2th1UJMhNKZa4mZd7fLYUFQK-w`
 
    
