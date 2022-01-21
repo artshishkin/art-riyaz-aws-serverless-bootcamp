@@ -1,0 +1,5 @@
+{
+  "type": "TOKEN",
+  "authorizationToken": "incoming-client-token",
+  "methodArn": "arn:aws:execute-api:eu-north-1:392971033516:q61spr7f6l/*/GET/hello"
+}
