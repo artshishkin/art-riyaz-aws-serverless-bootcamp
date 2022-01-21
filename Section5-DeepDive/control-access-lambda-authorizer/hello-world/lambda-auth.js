@@ -1,17 +1,12 @@
-/*
-* Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
-*
-*     http://aws.amazon.com/apache2.0/
-*
-* or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-*/
+'use strict';
+
+const jwtDecode = require('jwt-decode');
+
 console.log('Loading function');
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
     // Do not print the auth token unless absolutely necessary
-    // console.log('Client token: ' + event.authorizationToken);
+    console.log('Client token: ' + event.authorizationToken);
     console.log('Method ARN: ' + event.methodArn);
 
     // validate the incoming token
@@ -21,7 +16,14 @@ exports.handler = function(event, context, callback) {
     // 1. Call out to OAuth provider
     // 2. Decode a JWT token inline
     // 3. Lookup in a self-managed DB
-    var principalId = 'user|a1b2c3d4'
+    let decoded;
+    try {
+        decoded = jwtDecode(event.authorizationToken);
+    } catch (e) {
+        return callback("Unauthorized");
+    }
+
+    var principalId = decoded.sub;
 
     // you can send a 401 Unauthorized response to the client by failing like so:
     // callback("Unauthorized", null);
@@ -54,7 +56,12 @@ exports.handler = function(event, context, callback) {
 
     // the example policy below denies access to all resources in the RestApi
     var policy = new AuthPolicy(principalId, awsAccountId, apiOptions);
-    policy.denyAllMethods();
+
+    if (principalId === "user1") {
+        policy.allowAllMethods();
+    } else {
+        policy.denyAllMethods();
+    }
     // policy.allowMethod(AuthPolicy.HttpVerb.GET, "/users/username");
 
     // finally, build the policy
@@ -64,9 +71,12 @@ exports.handler = function(event, context, callback) {
     // these are made available by APIGW like so: $context.authorizer.<key>
     // additional context is cached
     authResponse.context = {
-        key : 'value', // $context.authorizer.key -> value
-        number : 1,
-        bool: true
+        sub: decoded.sub,
+        name: decoded.name,
+        data: decoded.data
+        // key: 'value', // $context.authorizer.key -> value
+        // number: 1,
+        // bool: true
     };
     // authResponse.context.arr = ['foo']; <- this is invalid, APIGW will not accept it
     // authResponse.context.obj = {'foo':'bar'}; <- also invalid
@@ -173,17 +183,17 @@ function AuthPolicy(principal, awsAccountId, apiOptions) {
  * @type {Object}
  */
 AuthPolicy.HttpVerb = {
-    GET     : "GET",
-    POST    : "POST",
-    PUT     : "PUT",
-    PATCH   : "PATCH",
-    HEAD    : "HEAD",
-    DELETE  : "DELETE",
-    OPTIONS : "OPTIONS",
-    ALL     : "*"
+    GET: "GET",
+    POST: "POST",
+    PUT: "PUT",
+    PATCH: "PATCH",
+    HEAD: "HEAD",
+    DELETE: "DELETE",
+    OPTIONS: "OPTIONS",
+    ALL: "*"
 };
 
-AuthPolicy.prototype = (function() {
+AuthPolicy.prototype = (function () {
     /**
      * Adds a method to the internal lists of allowed or denied methods. Each object in
      * the internal list contains a resource ARN and a condition statement. The condition
@@ -197,7 +207,7 @@ AuthPolicy.prototype = (function() {
      * @param {Object} The conditions object in the format specified by the AWS docs.
      * @return {void}
      */
-    var addMethod = function(effect, verb, resource, conditions) {
+    var addMethod = function (effect, verb, resource, conditions) {
         if (verb != "*" && !AuthPolicy.HttpVerb.hasOwnProperty(verb)) {
             throw new Error("Invalid HTTP verb " + verb + ". Allowed verbs in AuthPolicy.HttpVerb");
         }
@@ -240,7 +250,7 @@ AuthPolicy.prototype = (function() {
      * @return {Object} An empty statement object with the Action, Effect, and Resource
      *                  properties prepopulated.
      */
-    var getEmptyStatement = function(effect) {
+    var getEmptyStatement = function (effect) {
         effect = effect.substring(0, 1).toUpperCase() + effect.substring(1, effect.length).toLowerCase();
         var statement = {};
         statement.Action = "execute-api:Invoke";
@@ -260,7 +270,7 @@ AuthPolicy.prototype = (function() {
      *                and the conditions for the policy
      * @return {Array} an array of formatted statements for the policy.
      */
-    var getStatementsForEffect = function(effect, methods) {
+    var getStatementsForEffect = function (effect, methods) {
         var statements = [];
 
         if (methods.length > 0) {
@@ -294,7 +304,7 @@ AuthPolicy.prototype = (function() {
          *
          * @method allowAllMethods
          */
-        allowAllMethods: function() {
+        allowAllMethods: function () {
             addMethod.call(this, "allow", "*", "*", null);
         },
 
@@ -303,7 +313,7 @@ AuthPolicy.prototype = (function() {
          *
          * @method denyAllMethods
          */
-        denyAllMethods: function() {
+        denyAllMethods: function () {
             addMethod.call(this, "deny", "*", "*", null);
         },
 
@@ -317,7 +327,7 @@ AuthPolicy.prototype = (function() {
          * @param {string} The resource path. For example "/pets"
          * @return {void}
          */
-        allowMethod: function(verb, resource) {
+        allowMethod: function (verb, resource) {
             addMethod.call(this, "allow", verb, resource, null);
         },
 
@@ -331,7 +341,7 @@ AuthPolicy.prototype = (function() {
          * @param {string} The resource path. For example "/pets"
          * @return {void}
          */
-        denyMethod : function(verb, resource) {
+        denyMethod: function (verb, resource) {
             addMethod.call(this, "deny", verb, resource, null);
         },
 
@@ -347,7 +357,7 @@ AuthPolicy.prototype = (function() {
          * @param {Object} The conditions object in the format specified by the AWS docs
          * @return {void}
          */
-        allowMethodWithConditions: function(verb, resource, conditions) {
+        allowMethodWithConditions: function (verb, resource, conditions) {
             addMethod.call(this, "allow", verb, resource, conditions);
         },
 
@@ -363,7 +373,7 @@ AuthPolicy.prototype = (function() {
          * @param {Object} The conditions object in the format specified by the AWS docs
          * @return {void}
          */
-        denyMethodWithConditions : function(verb, resource, conditions) {
+        denyMethodWithConditions: function (verb, resource, conditions) {
             addMethod.call(this, "deny", verb, resource, conditions);
         },
 
@@ -376,7 +386,7 @@ AuthPolicy.prototype = (function() {
          * @method build
          * @return {Object} The policy object that can be serialized to JSON.
          */
-        build: function() {
+        build: function () {
             if ((!this.allowMethods || this.allowMethods.length === 0) &&
                 (!this.denyMethods || this.denyMethods.length === 0)) {
                 throw new Error("No statements defined for the policy");

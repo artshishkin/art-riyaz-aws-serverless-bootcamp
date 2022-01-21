@@ -472,5 +472,6 @@ Generate JWT token
 }
 ```
 -  jwt: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMSIsIm5hbWUiOiJBcnQgU2h5c2hraW4iLCJpYXQiOjE1MTYyMzkwMjIsImRhdGEiOiJNeSBjdXN0b20gZGF0YSJ9.hAQ9JZGH2dxRPIL9W2th1UJMhNKZa4mZd7fLYUFQK-w`
-
+-  install `jwt-decode`
+   -  `npm install jwt-decode --save`
    
