@@ -495,6 +495,42 @@ Generate JWT token
       -  ALLOW_USER_SRP_AUTH: false
       -  ALLOW_REFRESH_TOKEN_AUTH: true
 
+#####  116. Generating Auth Tokens with Cognito User Pools
+
+-  [sign-up](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cognito-idp/sign-up.html)
+   -  `aws cognito-idp sign-up --client-id <value> --username <value> --password <value>`
+   -  secret: `1234art1234`
+```json
+{                                                                                                                                                                                      
+    "UserConfirmed": false,
+    "UserSub": "92515850-479f-4615-9473-69aae8326a5d"
+}
+```
+-  [admin-confirm-sign-up](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cognito-idp/admin-confirm-sign-up.html)
+   -  `aws cognito-idp admin-confirm-sign-up --user-pool-id <value> --username <value>`
+   -  ok
+-  [admin-initiate-auth](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cognito-idp/admin-initiate-auth.html)
+   -  `aws cognito-idp admin-initiate-auth --user-pool-id <value> --client-id <value> --auth-flow <value>`
+   -  `aws cognito-idp admin-initiate-auth --user-pool-id <value> --client-id <value> --auth-flow USER_PASSWORD_AUTH --auth-parameters USERNAME=<value>,PASSWORD=<password>`
+   -  **Error** I did not allowed  `ALLOW_ADMIN_USER_PASSWORD_AUTH`
+-  [initiate-auth](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cognito-idp/initiate-auth.html)      
+   -  `aws cognito-idp initiate-auth --client-id <value> --auth-flow USER_PASSWORD_AUTH --auth-parameters USERNAME=<value>,PASSWORD=<password>`
+```json
+{
+    "ChallengeParameters": {},
+    "AuthenticationResult": {
+        "AccessToken": "eyJra...UyzJrS6wZA",
+        "ExpiresIn": 3600,
+        "TokenType": "Bearer",
+        "RefreshToken": "ey...U6g",                                                                  
+        "IdToken": "eyJra...gl9vw"                                                                                                
+    }                                                                                                                                                                                  
+}   
+```
+
+
+
+
 
 
 
