@@ -21,10 +21,10 @@ Resources:
         DefaultAuthorizer: LambdaAuthorizer
         Authorizers:
           LambdaAuthorizer:
-            FunctionPayloadType: REQUEST
+            FunctionPayloadType: TOKEN
             FunctionArn: !GetAtt AuthorizerFunction.Arn
             Identity:
-              ReauthorizeEvery: 0
+              ReauthorizeEvery: 300
               Headers:
                 - Authorization
 
