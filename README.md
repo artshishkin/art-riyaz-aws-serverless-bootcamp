@@ -527,8 +527,9 @@ Generate JWT token
     }                                                                                                                                                                                  
 }   
 ```
-
-
+-  `aws cognito-idp initiate-auth --generate-cli-skeleton`
+   -  copy output and paste into [init-auth-skeleton.json](Section5-DeepDive/control-access-cognito-authorizer/init-auth-skeleton.json)
+-  `aws cognito-idp initiate-auth --cli-input-json file://init-auth-skeleton.json >> res.json`
 
 
 
