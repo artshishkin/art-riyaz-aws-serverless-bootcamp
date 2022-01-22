@@ -1,0 +1,9 @@
+### GET using Lambda Authorizer with Jwt Token
+GET {{serverUrl}}/hello
+Accept: application/json
+Authorization: {{accessToken}}
+
+### GET using Lambda Authorizer with Fake Token - 401 Unauthorized
+GET {{serverUrl}}/hello
+Accept: application/json
+Authorization: "fakeToken"
