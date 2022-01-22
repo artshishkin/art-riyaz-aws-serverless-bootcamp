@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "control-access-cognito-authorizer"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1alt62pqr870u"
+s3_prefix = "control-access-cognito-authorizer"
+region = "eu-north-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+parameter_overrides = "MyUserPoolArn=\"arn:aws:cognito-idp:eu-north-1:392971033516:userpool/eu-north-1_6584Kr6zk\""
