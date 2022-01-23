@@ -1,7 +1,13 @@
 {
     "Comment": "A Hello World example of the Amazon States Language using Pass states",
-    "StartAt": "Hello",
+    "StartAt": "WaitForSomeTime",
     "States": {
+        "WaitForSomeTime": {
+            "Type": "Wait",
+            "Seconds": 5,
+            "Next": "Hello",
+            "Comment": "Wait for 5 seconds"
+        },
         "Hello": {
             "Type": "Pass",
             "Result": "Hello",
