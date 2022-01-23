@@ -531,8 +531,43 @@ Generate JWT token
    -  copy output and paste into [init-auth-skeleton.json](Section5-DeepDive/control-access-cognito-authorizer/init-auth-skeleton.json)
 -  `aws cognito-idp initiate-auth --cli-input-json file://init-auth-skeleton.json >> res.json`
 
+####  Section 6: Serverless Deep Dive - AWS Step Functions
 
+#####  120. Creating your first State Machine using Amazon States Language (ASL)
 
+Step functions console:
+-  Create State Machine
+-  Write you workflow in code
+```json
+{
+  "Comment": "A Hello World example of the Amazon States Language using Pass states",
+  "StartAt": "Hello",
+  "States": {
+    "Hello": {
+      "Type": "Pass",
+      "Result": "Hello",
+      "Next": "World"
+    },
+    "World": {
+      "Type": "Pass",
+      "Result": "World",
+      "End": true
+    }
+  }
+}
+```
+-  State machine name: `HelloWorldStateMachine`
+-  Permissions: Create new role
+-  Create
+-  Start execution
+   -  Name: uuid by aws (can be changed)
+   -  Input
+```json
+{
+    "message": "This is my first state machine"
+}
+```
+-  Start execution
 
 
    
