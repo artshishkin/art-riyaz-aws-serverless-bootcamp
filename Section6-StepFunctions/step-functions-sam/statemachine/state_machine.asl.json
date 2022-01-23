@@ -4,9 +4,9 @@
     "States": {
         "WaitForSomeTime": {
             "Type": "Wait",
-            "Seconds": 5,
+            "SecondsPath": "$.waitTime",
             "Next": "Hello",
-            "Comment": "Wait for 5 seconds"
+            "Comment": "Wait seconds from input through jsonPath"
         },
         "Hello": {
             "Type": "Pass",
