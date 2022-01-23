@@ -6,7 +6,7 @@
             "Type": "Wait",
             "Next": "Hello",
             "Comment": "Wait for a certain timestamp",
-            "Timestamp": "2022-01-23T13:08:00+02:00"
+            "TimestampPath": "$.invokeTime"
         },
         "Hello": {
             "Type": "Pass",
