@@ -569,5 +569,14 @@ Step functions console:
 ```
 -  Start execution
 
+#####  121 Wait State in Step Functions
+
+Waiting for
+-  my 13:08
+-  UTC 11:08   
+-  "2022-01-23T13:08:00+02:00"
+
+
+
 
    
