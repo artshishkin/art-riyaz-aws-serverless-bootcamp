@@ -1,7 +1,11 @@
 {
-  "operation": "add",
-  "input": {
-    "operand1": 13,
-    "operand2": 17
+  "Comment": "Input Processing and Filtering in State Machines",
+  "anotherData": "Some data",
+  "lambda": {
+    "operation": "add",
+    "input": {
+      "operand1": 13,
+      "operand2": 17
+    }
   }
 }
