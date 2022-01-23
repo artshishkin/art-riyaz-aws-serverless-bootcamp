@@ -4,9 +4,15 @@
     "States": {
         "WaitForSomeTime": {
             "Type": "Wait",
-            "Next": "Hello",
-            "Comment": "Wait for a certain timestamp",
-            "TimestampPath": "$.invokeTime"
+            "Next": "GetRandomMessage",
+            "Comment": "Wait for a some time",
+            "Seconds": 1
+        },
+        "GetRandomMessage": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:eu-north-1:392971033516:function:getRandomMessage",
+            "TimeoutSeconds": 10,
+            "Next": "Hello"
         },
         "Hello": {
             "Type": "Pass",

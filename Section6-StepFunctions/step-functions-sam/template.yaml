@@ -21,6 +21,8 @@ Resources:
               - xray:GetSamplingRules
               - xray:GetSamplingTargets
             Resource: "*"
+        - LambdaInvokePolicy:
+            FunctionName: getRandomMessage
 
 Outputs:
   HelloWorldStateMachineArn:
