@@ -7,6 +7,7 @@
             "Resource": "${CalculatorFunctionArn}",
             "InputPath": "$.lambda",
             "ResultPath": "$.lambda.lambdaResult",
+            "OutputPath": "$.lambda",
             "TimeoutSeconds": 10,
             "End": true
         }
