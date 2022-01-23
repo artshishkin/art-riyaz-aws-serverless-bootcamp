@@ -8,6 +8,9 @@
             "InputPath": "$.lambda",
             "ResultPath": "$.lambda.lambdaResult",
             "OutputPath": "$.lambda",
+            "ResultSelector": {
+                "result.$": "$.body"
+            },
             "TimeoutSeconds": 10,
             "End": true
         }
