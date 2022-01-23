@@ -1,0 +1,12 @@
+{
+    "Comment": "State machine to study Input/Output Processing and Filtering",
+    "StartAt": "Calculate",
+    "States": {
+        "Calculate": {
+            "Type": "Task",
+            "Resource": "${CalculatorFunctionArn}",
+            "TimeoutSeconds": 10,
+            "End": true
+        }
+    }
+}

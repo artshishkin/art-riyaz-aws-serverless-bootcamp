@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  step-functions-sam
+
+  Sample SAM Template for calculate Step Functions
+
+Globals:
+  Function:
+    Timeout: 3
+    Runtime: nodejs14.x
+    Architectures:
+      - x86_64
+    CodeUri: functions/calculator/
+
+Resources:
+
+  CalculateStateMachine:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      DefinitionUri: statemachine/state_machine.asl.json
+      DefinitionSubstitutions:
+        CalculatorFunctionArn: !GetAtt CalculatorFunction.Arn
+      Policies:  # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - Version: "2012-10-17"
+          Statement:
+            Effect: Allow
+            Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+              - xray:GetSamplingRules
+              - xray:GetSamplingTargets
+            Resource: "*"
+        - LambdaInvokePolicy:
+            FunctionName: !Ref CalculatorFunction
+
+  CalculatorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: calculator.handler
+
+Outputs:
+  CalculateStateMachineArn:
+    Description: "Calculate state machine ARN"
+    Value: !Ref CalculateStateMachine
