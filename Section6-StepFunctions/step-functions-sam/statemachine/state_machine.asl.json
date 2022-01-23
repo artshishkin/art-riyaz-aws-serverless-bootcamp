@@ -16,12 +16,10 @@
         },
         "Hello": {
             "Type": "Pass",
-            "Result": "Hello",
             "Next": "World"
         },
         "World": {
             "Type": "Pass",
-            "Result": "World",
             "End": true
         }
     }
