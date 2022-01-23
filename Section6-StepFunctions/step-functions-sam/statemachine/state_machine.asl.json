@@ -4,13 +4,13 @@
     "States": {
         "WaitForSomeTime": {
             "Type": "Wait",
-            "Next": "GetRandomMessage",
+            "Next": "CalculateSquare",
             "Comment": "Wait for a some time",
             "Seconds": 1
         },
-        "GetRandomMessage": {
+        "CalculateSquare": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:eu-north-1:392971033516:function:getRandomMessage",
+            "Resource": "${CalculateSquareFunctionArn}",
             "TimeoutSeconds": 10,
             "Next": "Hello"
         },
