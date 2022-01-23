@@ -6,7 +6,7 @@
             "Type": "Task",
             "Resource": "${CalculatorFunctionArn}",
             "InputPath": "$.lambda",
-            "ResultPath": "$.lambda",
+            "ResultPath": "$.lambda.lambdaResult",
             "TimeoutSeconds": 10,
             "End": true
         }
