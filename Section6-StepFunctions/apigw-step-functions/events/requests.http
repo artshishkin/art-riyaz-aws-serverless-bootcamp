@@ -1,0 +1,6 @@
+### Start State Machine Execution
+POST {{serverUrl}}/math
+Accept: application/json
+Content-Type: application/json
+
+< ./calc-square-input.json
