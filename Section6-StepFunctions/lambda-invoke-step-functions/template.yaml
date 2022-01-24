@@ -54,12 +54,8 @@ Resources:
         Variables:
           STATE_MACHINE_ARN: !GetAtt CalculatorStateMachine.Arn
       Policies:
-        - Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Action:
-                - states:StartExecution
-              Resource: !GetAtt CalculatorStateMachine.Arn
+        - StepFunctionsExecutionPolicy:
+            StateMachineName: !GetAtt CalculatorStateMachine.Name
 
 Outputs:
   CalculatorStateMachineArn:
