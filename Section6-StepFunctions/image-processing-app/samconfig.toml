@@ -8,3 +8,4 @@ s3_prefix = "image-processing-app"
 region = "eu-north-1"
 capabilities = "CAPABILITY_IAM"
 image_repositories = []
+parameter_overrides = "AppBucketName=\"art-image-processing\""

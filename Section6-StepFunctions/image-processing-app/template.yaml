@@ -5,6 +5,18 @@ Description: >
 
   SAM Template for image-processing-app
 
+Parameters:
+  AppBucketName:
+    Type: String
+    Description: "REQUIRED: Unique S3 bucket name to use for the app."
+
+Globals:
+  Function:
+    Runtime: nodejs14.x
+    Architectures:
+      - x86_64
+    MemorySize: 128
+
 Resources:
 
   ImageProcessingStateMachine:
@@ -13,6 +25,35 @@ Resources:
       DefinitionUri: statemachine/state_machine.asl.json
       Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
         - CloudWatchPutMetricPolicy: {}
+
+  AppBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref AppBucketName
+
+  InvokeImageProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/s3-observer/
+      Handler: invoke-image-processor.handler
+      Timeout: 60
+      Environment:
+        Variables:
+          STATE_MACHINE_ARN: !GetAtt ImageProcessingStateMachine.Arn
+      Policies:
+        - StepFunctionsExecutionPolicy:
+            StateMachineName: !GetAtt ImageProcessingStateMachine.Name
+      Events:
+        S3NewObjectEvent:
+          Type: S3
+          Properties:
+            Bucket: !Ref AppBucket
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: "original/"
 
 Outputs:
   ImageProcessingStateMachineArn:
