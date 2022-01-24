@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  image-processing-app
+
+  SAM Template for image-processing-app
+
+Resources:
+
+  ImageProcessingStateMachine:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      DefinitionUri: statemachine/state_machine.asl.json
+      Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - CloudWatchPutMetricPolicy: {}
+
+Outputs:
+  ImageProcessingStateMachineArn:
+    Description: "Image Processing state machine ARN"
+    Value: !Ref ImageProcessingStateMachine
+
