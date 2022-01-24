@@ -25,9 +25,12 @@ Resources:
       DefinitionUri: statemachine/state_machine.asl.json
       DefinitionSubstitutions:
         GetFileTypeFunctionArn: !GetAtt GetFileTypeFunction.Arn
+        CopyFileFunctionArn: !GetAtt CopyFileFunction.Arn
       Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
         - LambdaInvokePolicy:
             FunctionName: !Ref GetFileTypeFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref CopyFileFunction
         - CloudWatchPutMetricPolicy: {}
 
   AppBucket:
@@ -64,6 +67,15 @@ Resources:
     Properties:
       CodeUri: functions/processing/
       Handler: get-file-type.handler
+
+  CopyFileFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/processing/
+      Handler: copy-file.handler
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref AppBucketName
 
 Outputs:
   ImageProcessingStateMachineArn:

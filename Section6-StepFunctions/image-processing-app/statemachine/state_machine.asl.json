@@ -28,7 +28,9 @@
                     "StartAt": "CopyToDestination",
                     "States": {
                         "CopyToDestination": {
-                            "Type": "Pass",
+                            "Type": "Task",
+                            "Resource": "${CopyFileFunctionArn}",
+                            "TimeoutSeconds": 10,
                             "End": true
                         }
                     }
