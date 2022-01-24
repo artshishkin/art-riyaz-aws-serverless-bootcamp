@@ -39,7 +39,9 @@
                     "StartAt": "ResizeImage",
                     "States": {
                         "ResizeImage": {
-                            "Type": "Pass",
+                            "Type": "Task",
+                            "Resource": "${ResizeImageFunctionArn}",
+                            "TimeoutSeconds": 10,
                             "End": true
                         }
                     }
