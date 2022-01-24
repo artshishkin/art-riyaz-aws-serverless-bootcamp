@@ -1,0 +1,6 @@
+{
+  "input": {
+    "message": "Invoked from Lambda Function",
+    "number": 15
+  }
+}
