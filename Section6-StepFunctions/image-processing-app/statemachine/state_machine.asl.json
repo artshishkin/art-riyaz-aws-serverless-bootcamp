@@ -3,7 +3,10 @@
     "StartAt": "GetFileType",
     "States": {
         "GetFileType": {
-            "Type": "Pass",
+            "Type": "Task",
+            "Resource": "${GetFileTypeFunctionArn}",
+            "TimeoutSeconds": 10,
+            "ResultPath": "$.results.fileType",
             "Next": "CheckFileType"
         },
         "CheckFileType": {

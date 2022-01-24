@@ -23,7 +23,11 @@ Resources:
     Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
     Properties:
       DefinitionUri: statemachine/state_machine.asl.json
+      DefinitionSubstitutions:
+        GetFileTypeFunctionArn: !GetAtt GetFileTypeFunction.Arn
       Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - LambdaInvokePolicy:
+            FunctionName: !Ref GetFileTypeFunction
         - CloudWatchPutMetricPolicy: {}
 
   AppBucket:
@@ -54,6 +58,12 @@ Resources:
                 Rules:
                   - Name: prefix
                     Value: "original/"
+
+  GetFileTypeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/processing/
+      Handler: get-file-type.handler
 
 Outputs:
   ImageProcessingStateMachineArn:
