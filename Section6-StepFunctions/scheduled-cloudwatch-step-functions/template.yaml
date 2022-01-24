@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  scheduled-cloudwatch-step-functions
+
+  SAM Template for scheduled-cloudwatch-step-functions
+
+Globals:
+  Function:
+    Timeout: 3
+    Runtime: nodejs14.x
+    Architectures:
+      - x86_64
+    CodeUri: functions/calculator/
+
+Resources:
+
+  CalculatorStateMachine:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      DefinitionUri: statemachine/state_machine.asl.json
+      DefinitionSubstitutions:
+        CalculateSquareFunctionArn: !GetAtt CalculateSquareFunction.Arn
+      Policies:  # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - LambdaInvokePolicy:
+            FunctionName: !Ref CalculateSquareFunction
+      Events:
+        ScheduledMachineInvoke:
+          Type: Schedule
+          Properties:
+            Enabled: true
+            Input: "{\"message\": \"Invoked from CloudWatch\",\"number\": 15}"
+            Schedule: 'rate(5 minutes)'
+            Description: Invoke State Machine every 5 minutes
+
+  CalculateSquareFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: calculateSquare.lambdaHandler
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !GetAtt CalculatorFunction.Arn
+      Environment:
+        Variables:
+          CALCULATOR_FUNCTION_NAME: !Ref CalculatorFunction
+
+  CalculatorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: calculator.handler
+
+Outputs:
+  CalculatorStateMachineArn:
+    Description: "Calculator state machine ARN"
+    Value: !Ref CalculatorStateMachine
+

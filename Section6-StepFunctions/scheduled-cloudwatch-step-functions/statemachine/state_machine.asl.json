@@ -1,0 +1,26 @@
+{
+    "Comment": "Calculate Square State Machine with the Amazon States Language",
+    "StartAt": "WaitForSomeTime",
+    "States": {
+        "WaitForSomeTime": {
+            "Type": "Wait",
+            "Next": "CalculateSquare",
+            "Comment": "Wait for a some time",
+            "Seconds": 1
+        },
+        "CalculateSquare": {
+            "Type": "Task",
+            "Resource": "${CalculateSquareFunctionArn}",
+            "TimeoutSeconds": 10,
+            "Next": "Hello"
+        },
+        "Hello": {
+            "Type": "Pass",
+            "Next": "World"
+        },
+        "World": {
+            "Type": "Pass",
+            "End": true
+        }
+    }
+}
