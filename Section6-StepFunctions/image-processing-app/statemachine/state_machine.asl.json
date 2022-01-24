@@ -18,8 +18,32 @@
             "Default": "DeleteSourceFile"
         },
         "ProcessFile": {
+            "Type": "Parallel",
+            "Next": "WriteToDynamoDb",
+            "Branches": [
+                {
+                    "StartAt": "CopyToDestination",
+                    "States": {
+                        "CopyToDestination": {
+                            "Type": "Pass",
+                            "End": true
+                        }
+                    }
+                },
+                {
+                    "StartAt": "ResizeImage",
+                    "States": {
+                        "ResizeImage": {
+                            "Type": "Pass",
+                            "End": true
+                        }
+                    }
+                }
+            ]
+        },
+        "WriteToDynamoDb": {
             "Type": "Pass",
-            "End": true
+            "Next": "DeleteSourceFile"
         },
         "DeleteSourceFile": {
             "Type": "Pass",
