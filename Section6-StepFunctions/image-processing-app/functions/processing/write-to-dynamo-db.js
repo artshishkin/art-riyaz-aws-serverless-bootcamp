@@ -7,9 +7,11 @@ const uuid = require('uuid');
 
 exports.handler = async (event, context) => {
 
+    const imagesArray = event.results.images;
+
     const images = {
-        ...event[0],
-        ...event[1]
+        ...imagesArray[0],
+        ...imagesArray[1]
     };
     const item = {
         ...images,

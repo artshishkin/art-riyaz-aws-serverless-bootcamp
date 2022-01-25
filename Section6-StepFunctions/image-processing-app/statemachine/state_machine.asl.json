@@ -5,9 +5,17 @@
         "GetFileType": {
             "Type": "Task",
             "Resource": "${GetFileTypeFunctionArn}",
-            "TimeoutSeconds": 10,
+            "TimeoutSeconds": 3,
             "ResultPath": "$.results.fileType",
-            "Next": "CheckFileType"
+            "Next": "CheckFileType",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "Next": "QuitMain"
+                }
+            ]
         },
         "CheckFileType": {
             "Type": "Choice",
@@ -23,6 +31,7 @@
         "ProcessFile": {
             "Type": "Parallel",
             "Next": "WriteToDynamoDb",
+            "ResultPath": "$.results.images",
             "Branches": [
                 {
                     "StartAt": "CopyToDestination",
@@ -30,7 +39,7 @@
                         "CopyToDestination": {
                             "Type": "Task",
                             "Resource": "${CopyFileFunctionArn}",
-                            "TimeoutSeconds": 10,
+                            "TimeoutSeconds": 3,
                             "ResultSelector": {
                                 "original.$": "$"
                             },
@@ -63,8 +72,23 @@
         "DeleteSourceFile": {
             "Type": "Task",
             "Resource": "${DeleteFileFunctionArn}",
-            "TimeoutSeconds": 10,
-            "End": true
+            "TimeoutSeconds": 3,
+            "ResultPath": "$.results.deletionStatus",
+            "OutputPath": "$.results",
+            "End": true,
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "Next": "QuitMain"
+                }
+            ]
+        },
+        "QuitMain": {
+            "Type": "Fail",
+            "Error": "GenericError",
+            "Cause": "An error occurred while executing the state machine"
         }
     }
 }
