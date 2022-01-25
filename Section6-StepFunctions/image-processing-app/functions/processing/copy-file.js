@@ -12,9 +12,11 @@ exports.handler = async (event) => {
     const copyKey = filename.replace('original/', 'destination/');
     const params = {
         Bucket: bucket,
-        CopySource: encodeURI(`/${bucket}/${filename}`),
+        CopySource: encodeURIComponent(`/${bucket}/${filename}`),
         Key: copyKey
     };
+
+    console.log(JSON.stringify(params));
 
     const result = await s3.copyObject(params).promise();
 
