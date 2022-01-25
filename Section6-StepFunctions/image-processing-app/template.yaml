@@ -30,6 +30,7 @@ Resources:
         GetFileTypeFunctionArn: !GetAtt GetFileTypeFunction.Arn
         CopyFileFunctionArn: !GetAtt CopyFileFunction.Arn
         ResizeImageFunctionArn: !GetAtt ResizeImageFunction.Arn
+        WriteToDynamoDbFunctionArn: !GetAtt WriteToDynamoDbFunction.Arn
       Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
         - LambdaInvokePolicy:
             FunctionName: !Ref GetFileTypeFunction
@@ -37,12 +38,24 @@ Resources:
             FunctionName: !Ref CopyFileFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref ResizeImageFunction
+        - LambdaInvokePolicy:
+            FunctionName: !Ref WriteToDynamoDbFunction
         - CloudWatchPutMetricPolicy: {}
 
   AppBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref AppBucketName
+
+  ImageProcessingTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Type: String
+        Name: id
+      ProvisionedThroughput:
+        WriteCapacityUnits: 3
+        ReadCapacityUnits: 3
 
   InvokeImageProcessorFunction:
     Type: AWS::Serverless::Function
@@ -97,6 +110,18 @@ Resources:
       Policies:
         - S3CrudPolicy:
             BucketName: !Ref AppBucketName
+
+  WriteToDynamoDbFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/processing/
+      Handler: write-to-dynamo-db.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ImageProcessingTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ImageProcessingTable
 
 Outputs:
   ImageProcessingStateMachineArn:

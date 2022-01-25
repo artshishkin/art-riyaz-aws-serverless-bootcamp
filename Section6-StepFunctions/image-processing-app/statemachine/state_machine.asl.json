@@ -49,7 +49,9 @@
             ]
         },
         "WriteToDynamoDb": {
-            "Type": "Pass",
+            "Type": "Task",
+            "Resource": "${WriteToDynamoDbFunctionArn}",
+            "TimeoutSeconds": 10,
             "Next": "DeleteSourceFile"
         },
         "DeleteSourceFile": {
