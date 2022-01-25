@@ -43,7 +43,39 @@
                             "ResultSelector": {
                                 "original.$": "$"
                             },
-                            "End": true
+                            "End": true,
+                            "Retry": [
+                                {
+                                    "ErrorEquals": [
+                                        "States.Timeout",
+                                        "States.TaskFailed"
+                                    ],
+                                    "BackoffRate": 2,
+                                    "IntervalSeconds": 5,
+                                    "MaxAttempts": 2
+                                },
+                                {
+                                    "ErrorEquals": [
+                                        "States.ALL"
+                                    ],
+                                    "BackoffRate": 1,
+                                    "IntervalSeconds": 2,
+                                    "MaxAttempts": 2
+                                }
+                            ],
+                            "Catch": [
+                                {
+                                    "ErrorEquals": [
+                                        "States.ALL"
+                                    ],
+                                    "Next": "QuitCopy"
+                                }
+                            ]
+                        },
+                        "QuitCopy": {
+                            "Type": "Fail",
+                            "Cause": "An error occurred while executing the CopyToDestination task",
+                            "Error": "CopyError"
                         }
                     }
                 },
@@ -57,7 +89,39 @@
                             "ResultSelector": {
                                 "thumbnail.$": "$"
                             },
-                            "End": true
+                            "End": true,
+                            "Retry": [
+                                {
+                                    "ErrorEquals": [
+                                        "States.Timeout",
+                                        "States.TaskFailed"
+                                    ],
+                                    "BackoffRate": 2,
+                                    "IntervalSeconds": 5,
+                                    "MaxAttempts": 2
+                                },
+                                {
+                                    "ErrorEquals": [
+                                        "States.ALL"
+                                    ],
+                                    "BackoffRate": 1,
+                                    "IntervalSeconds": 2,
+                                    "MaxAttempts": 2
+                                }
+                            ],
+                            "Catch": [
+                                {
+                                    "ErrorEquals": [
+                                        "States.ALL"
+                                    ],
+                                    "Next": "QuitResize"
+                                }
+                            ]
+                        },
+                        "QuitResize": {
+                            "Type": "Fail",
+                            "Cause": "An error occurred while executing the ResizeImage task",
+                            "Error": "ResizeError"
                         }
                     }
                 }
@@ -66,8 +130,17 @@
         "WriteToDynamoDb": {
             "Type": "Task",
             "Resource": "${WriteToDynamoDbFunctionArn}",
-            "TimeoutSeconds": 10,
-            "Next": "DeleteSourceFile"
+            "TimeoutSeconds": 3,
+            "ResultPath": "$.results.writeToDynamoDbStatus",
+            "Next": "DeleteSourceFile",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "Next": "QuitMain"
+                }
+            ]
         },
         "DeleteSourceFile": {
             "Type": "Task",
