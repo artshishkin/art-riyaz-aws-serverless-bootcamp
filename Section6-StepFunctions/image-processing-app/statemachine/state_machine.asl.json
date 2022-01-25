@@ -61,7 +61,9 @@
             "Next": "DeleteSourceFile"
         },
         "DeleteSourceFile": {
-            "Type": "Pass",
+            "Type": "Task",
+            "Resource": "${DeleteFileFunctionArn}",
+            "TimeoutSeconds": 10,
             "End": true
         }
     }
