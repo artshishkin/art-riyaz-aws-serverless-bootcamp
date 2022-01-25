@@ -31,6 +31,9 @@
                             "Type": "Task",
                             "Resource": "${CopyFileFunctionArn}",
                             "TimeoutSeconds": 10,
+                            "ResultSelector": {
+                                "original.$": "$"
+                            },
                             "End": true
                         }
                     }
@@ -42,6 +45,9 @@
                             "Type": "Task",
                             "Resource": "${ResizeImageFunctionArn}",
                             "TimeoutSeconds": 10,
+                            "ResultSelector": {
+                                "thumbnail.$": "$"
+                            },
                             "End": true
                         }
                     }

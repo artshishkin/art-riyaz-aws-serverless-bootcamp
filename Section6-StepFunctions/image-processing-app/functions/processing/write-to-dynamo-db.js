@@ -7,18 +7,23 @@ const uuid = require('uuid');
 
 exports.handler = async (event, context) => {
 
-    const eventWithId = {
-        ...event,
-        id: uuid.v4().toString()
+    const images = {
+        ...event[0],
+        ...event[1]
+    };
+    const item = {
+        ...images,
+        id: `${images.original.region}|${images.original.bucket}|${images.original.key}`,
+        timestamp: new Date().getTime()
     };
 
     const params = {
         TableName: process.env.TABLE_NAME,
-        Item: eventWithId
+        Item: item
     };
     const result = await docClient.put(params).promise();
 
-    return result;
+    return true;
 }
 
 

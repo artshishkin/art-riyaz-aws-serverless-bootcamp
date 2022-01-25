@@ -40,7 +40,6 @@ Resources:
             FunctionName: !Ref ResizeImageFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref WriteToDynamoDbFunction
-        - CloudWatchPutMetricPolicy: {}
 
   AppBucket:
     Type: AWS::S3::Bucket
