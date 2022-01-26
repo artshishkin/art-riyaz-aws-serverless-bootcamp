@@ -103,10 +103,14 @@
                     "States": {
                         "ResizeImage": {
                             "Type": "Task",
-                            "Resource": "${ResizeImageFunctionArn}",
+                            "Resource": "arn:aws:states:::lambda:invoke",
+                            "Parameters": {
+                                "Payload.$": "$",
+                                "FunctionName": "${ResizeImageFunctionArn}"
+                            },
                             "TimeoutSeconds": 10,
                             "ResultSelector": {
-                                "thumbnail.$": "$"
+                                "thumbnail.$": "$.Payload"
                             },
                             "End": true,
                             "Retry": [
