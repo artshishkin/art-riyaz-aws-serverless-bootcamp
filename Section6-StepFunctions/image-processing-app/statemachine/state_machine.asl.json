@@ -99,6 +99,41 @@
                     }
                 },
                 {
+                    "StartAt": "CreateCopyParameters",
+                    "States": {
+                        "CreateCopyParameters": {
+                            "Type": "Task",
+                            "Resource": "${CreateCopyParametersFunctionArn}",
+                            "TimeoutSeconds": 3,
+                            "Next": "CopyToDestinationS3"
+                        },
+                        "CopyToDestinationS3": {
+                            "Type": "Task",
+                            "Parameters": {
+                                "Bucket.$": "$.copyParams.Bucket",
+                                "CopySource.$": "$.copyParams.CopySource",
+                                "Key.$": "$.copyParams.Key"
+                            },
+                            "Resource": "arn:aws:states:::aws-sdk:s3:copyObject",
+                            "Catch": [
+                                {
+                                    "ErrorEquals": [
+                                        "States.ALL"
+                                    ],
+                                    "Next": "QuitCopyS3"
+                                }
+                            ],
+                            "End": true
+                        },
+                        "QuitCopyS3": {
+                            "Type": "Fail",
+                            "Cause": "An error occurred while executing the CopyToDestination task",
+                            "Error": "CopyError"
+                        }
+                    }
+                },
+
+                {
                     "StartAt": "ResizeImage",
                     "States": {
                         "ResizeImage": {

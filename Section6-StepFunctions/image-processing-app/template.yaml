@@ -29,6 +29,7 @@ Resources:
       DefinitionSubstitutions:
         GetFileTypeFunctionArn: !GetAtt GetFileTypeFunction.Arn
         CopyFileFunctionArn: !GetAtt CopyFileFunction.Arn
+        CreateCopyParametersFunctionArn: !GetAtt CreateCopyParametersFunction.Arn
         ResizeImageFunctionArn: !GetAtt ResizeImageFunction.Arn
         WriteToDynamoDbFunctionArn: !GetAtt WriteToDynamoDbFunction.Arn
         DeleteFileFunctionArn: !GetAtt DeleteFileFunction.Arn
@@ -38,11 +39,15 @@ Resources:
         - LambdaInvokePolicy:
             FunctionName: !Ref CopyFileFunction
         - LambdaInvokePolicy:
+            FunctionName: !Ref CreateCopyParametersFunction
+        - LambdaInvokePolicy:
             FunctionName: !Ref ResizeImageFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref WriteToDynamoDbFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref DeleteFileFunction
+        - S3CrudPolicy:
+            BucketName: !Ref AppBucketName
 
   AppBucket:
     Type: AWS::S3::Bucket
@@ -97,6 +102,15 @@ Resources:
       Policies:
         - S3CrudPolicy:
             BucketName: !Ref AppBucketName
+
+  CreateCopyParametersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/processing/
+      Handler: create-copy-parameters.handler
+      Environment:
+        Variables:
+          DESTINATION_FOLDER: dest2
 
   ResizeImageFunction:
     Type: AWS::Serverless::Function
