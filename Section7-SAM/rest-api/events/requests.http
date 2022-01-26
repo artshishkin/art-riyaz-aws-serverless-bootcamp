@@ -1,0 +1,11 @@
+### Create new User
+POST {{serverUrl}}/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "Art",
+  "lastName": "Shyshkin",
+  "email": "art.shyshkin@mailinator.com",
+  "website": "example.shyshkin.net"
+}

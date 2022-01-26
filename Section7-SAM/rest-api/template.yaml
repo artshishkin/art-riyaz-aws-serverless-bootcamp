@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  rest-api
+
+  Sample SAM Template for rest-api
+  
+Globals:
+  Function:
+    Timeout: 3
+    CodeUri: functions/
+    Runtime: nodejs14.x
+    Architectures:
+      - x86_64
+
+Resources:
+
+  CreateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: post.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref UsersTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UsersTable
+      Events:
+        CreateUser:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: post
+
+  UsersTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Type: String
+        Name: userId
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+Outputs:
+  UsersApi:
+    Description: "API Gateway endpoint URL for Prod stage for Users API"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/users"
