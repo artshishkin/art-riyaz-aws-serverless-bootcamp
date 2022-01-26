@@ -14,6 +14,13 @@ exports.handler = async (event) => {
     console.log(JSON.stringify(params));
 
     return {
-        copyParams: params
+        copyParams: params,
+        output: {
+            original2: {
+                region: process.env.AWS_REGION,
+                bucket: bucket,
+                key: copyKey
+            }
+        }
     };
 }

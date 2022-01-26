@@ -123,7 +123,9 @@
                                     "Next": "QuitCopyS3"
                                 }
                             ],
-                            "End": true
+                            "End": true,
+                            "ResultPath": null,
+                            "OutputPath": "$.output"
                         },
                         "QuitCopyS3": {
                             "Type": "Fail",
