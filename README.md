@@ -576,6 +576,27 @@ Waiting for
 -  UTC 11:08   
 -  "2022-01-23T13:08:00+02:00"
 
+####  11 State Machine Experiments
+
+#####  11.7 Standard vs Express Comparison
+
+1.  Standard
+   -  Price: 25$ per 1M transitions
+   -  my StateMachine has 10 transitions
+   -  1 M executions * 10 trans/exec = 10M transitions
+   -  total 250$
+2.  Express
+   -  Price:
+      -  1$ per 1M executions
+      -  0.00001667$ per GB*s
+   -  1M executions:
+      -  1$ (requests)
+      -  64MB*2.75s(~took 1 execution)*1M(executions)*0.00001667$/1024 (MB in GB) = 2.865$
+   -  total 3.87$
+
+
+
+
 
 
 

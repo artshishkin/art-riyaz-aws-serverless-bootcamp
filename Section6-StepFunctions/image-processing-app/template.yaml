@@ -25,6 +25,7 @@ Resources:
   ImageProcessingStateMachine:
     Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
     Properties:
+      Type: EXPRESS
       DefinitionUri: statemachine/state_machine.asl.json
       DefinitionSubstitutions:
         GetFileTypeFunctionArn: !GetAtt GetFileTypeFunction.Arn
