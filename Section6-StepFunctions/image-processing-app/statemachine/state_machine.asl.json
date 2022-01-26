@@ -4,10 +4,26 @@
     "States": {
         "GetFileType": {
             "Type": "Task",
-            "Resource": "${GetFileTypeFunctionArn}",
-            "TimeoutSeconds": 3,
-            "ResultPath": "$.results.fileType",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "Parameters": {
+                "Payload.$": "$",
+                "FunctionName": "${GetFileTypeFunctionArn}"
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                }
+            ],
             "Next": "CheckFileType",
+            "ResultPath": "$.results",
+            "TimeoutSeconds": 3,
             "Catch": [
                 {
                     "ErrorEquals": [
@@ -15,7 +31,10 @@
                     ],
                     "Next": "QuitMain"
                 }
-            ]
+            ],
+            "ResultSelector": {
+                "fileType.$": "$.Payload"
+            }
         },
         "CheckFileType": {
             "Type": "Choice",
