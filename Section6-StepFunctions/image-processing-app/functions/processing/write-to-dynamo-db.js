@@ -3,16 +3,25 @@ AWS.config.update({region: "eu-north-1"});
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-const uuid = require('uuid');
+const arrayToObject = (array) => {
+
+    let result = {};
+
+    array.forEach(value =>
+        result = {
+            ...result,
+            ...value
+        });
+
+    return result;
+};
 
 exports.handler = async (event, context) => {
 
     const imagesArray = event.results.images;
 
-    const images = {
-        ...imagesArray[0],
-        ...imagesArray[1]
-    };
+    const images = arrayToObject(imagesArray);
+
     const item = {
         ...images,
         id: `${images.original.region}|${images.original.bucket}|${images.original.key}`,
