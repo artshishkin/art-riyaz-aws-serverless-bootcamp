@@ -32,7 +32,6 @@ Resources:
         CreateCopyParametersFunctionArn: !GetAtt CreateCopyParametersFunction.Arn
         ResizeImageFunctionArn: !GetAtt ResizeImageFunction.Arn
         WriteToDynamoDbFunctionArn: !GetAtt WriteToDynamoDbFunction.Arn
-        DeleteFileFunctionArn: !GetAtt DeleteFileFunction.Arn
       Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
         - LambdaInvokePolicy:
             FunctionName: !Ref GetFileTypeFunction
@@ -44,8 +43,6 @@ Resources:
             FunctionName: !Ref ResizeImageFunction
         - LambdaInvokePolicy:
             FunctionName: !Ref WriteToDynamoDbFunction
-        - LambdaInvokePolicy:
-            FunctionName: !Ref DeleteFileFunction
         - S3CrudPolicy:
             BucketName: !Ref AppBucketName
 
@@ -138,15 +135,6 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ImageProcessingTable
-
-  DeleteFileFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: functions/processing/
-      Handler: delete-file.handler
-      Policies:
-        - S3CrudPolicy:
-            BucketName: !Ref AppBucketName
 
 Outputs:
   ImageProcessingStateMachineArn:

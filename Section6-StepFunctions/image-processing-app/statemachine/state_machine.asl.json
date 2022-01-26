@@ -204,10 +204,17 @@
         },
         "DeleteSourceFile": {
             "Type": "Task",
-            "Resource": "${DeleteFileFunctionArn}",
+            "Resource": "arn:aws:states:::aws-sdk:s3:deleteObject",
+            "Parameters": {
+                "Bucket.$": "$.Bucket",
+                "Key.$": "$.Key"
+            },
             "TimeoutSeconds": 3,
-            "ResultPath": "$.results.deletionStatus",
+            "ResultPath": "$.results.deletion",
             "OutputPath": "$.results",
+            "ResultSelector": {
+                "deletionStatus": true
+            },
             "End": true,
             "Catch": [
                 {
