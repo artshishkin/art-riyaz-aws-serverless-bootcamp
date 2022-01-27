@@ -617,5 +617,10 @@ Waiting for
 2.  Deploy only function
    -  `sls deploy function -f hello`
 
+#####  164. Removing a Deployed Stack using the Serverless Framework
 
+1.  Remove stack
+   -  `sls remove`
+2.  Override parameters (i.e. stage)
+   -  `sls deploy --stage prod`
    
