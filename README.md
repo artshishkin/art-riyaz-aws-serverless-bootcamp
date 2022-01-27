@@ -595,6 +595,11 @@ Waiting for
    -  total 3.87$
 
 
+####  Section 8: Accelerating Development with the Serverless Framework
+
+#####  161. Creating Your First Serverless Application with the Serverless Framework
+
+-  `sls create -t aws-nodejs -p hello-serverless`
 
 
 
