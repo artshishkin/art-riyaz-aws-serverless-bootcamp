@@ -32,6 +32,23 @@ Resources:
             Path: /users
             Method: post
 
+  GetUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: get.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref UsersTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref UsersTable
+      Events:
+        GetUser:
+          Type: Api
+          Properties:
+            Path: /users/{userId}
+            Method: get
+
   UsersTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
