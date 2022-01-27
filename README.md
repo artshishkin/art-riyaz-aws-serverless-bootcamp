@@ -601,7 +601,12 @@ Waiting for
 
 -  `sls create -t aws-nodejs -p hello-serverless`
 
+#####  162. Testing the Lambda Functions Locally with the Serverless Framework
 
+-  `sls invoke local -f hello`
+-  `serverless invoke local -f hello -d '{\"key\":\"value\"}'` (PowerShell)
+-  **or**
+-  `sls invoke local -f hello -d {\"key\":\"value\"}` (CMD)
 
 
 
