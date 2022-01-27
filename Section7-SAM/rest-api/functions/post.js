@@ -27,9 +27,9 @@ exports.handler = async(event) => {
     }).promise();
 
     return {
-        statusCode: 200,
+        statusCode: 201,
         body: JSON.stringify({
-            message: "Data inserted/updated successfully."
+            userId: userid
         })
     };
 }
