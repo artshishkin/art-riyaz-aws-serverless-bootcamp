@@ -608,6 +608,14 @@ Waiting for
 -  **or**
 -  `sls invoke local -f hello -d {\"key\":\"value\"}` (CMD)
 
+#####  163. Deploying with the Serverless Framework
+
+1.  Deploy entire stack
+   -  `sls deploy`
+   -  `sls deploy --verbose`
+   -  too long
+2.  Deploy only function
+   -  `sls deploy function -f hello`
 
 
    

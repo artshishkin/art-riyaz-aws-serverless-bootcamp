@@ -61,6 +61,7 @@ hs_err_pid*
 *.jtl
 
 .aws-sam/
+.serverless/
 
 dependency-reduced-pom.xml
 package-lock.json
