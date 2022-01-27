@@ -634,6 +634,12 @@ VPC console
 -  View Lambda Role
    -  Attached policy: AWSLambdaVPCAccessExecutionRole
 
+#####  169. Serverless Plugins – Running API Gateway Locally using the Serverless Framework
+
+-  `npm init`
+-  `npm install --save-dev serverless-offline`
+-  `sls offline`
+
 
 
 
