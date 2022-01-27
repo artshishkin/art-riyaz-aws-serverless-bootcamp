@@ -14,5 +14,9 @@ Content-Type: application/json
 GET {{serverUrl}}/users/8c8a5df6-561b-4926-a293-565048cb8b12
 Accept: application/json
 
+### Delete User
+DELETE {{serverUrl}}/users/8c8a5df6-561b-4926-a293-565048cb8b12
+Accept: application/json
+
 
 

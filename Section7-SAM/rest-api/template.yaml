@@ -49,6 +49,23 @@ Resources:
             Path: /users/{userId}
             Method: get
 
+  DeleteUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: delete.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref UsersTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UsersTable
+      Events:
+        DeleteUser:
+          Type: Api
+          Properties:
+            Path: /users/{userId}
+            Method: delete
+
   UsersTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
