@@ -1,0 +1,10 @@
+###  Serverless API Gateway math add operation
+POST {{serverUrl}}/math/add
+Content-Type: application/json
+
+{
+  "number1": 13,
+  "number2": 5
+}
+
+###

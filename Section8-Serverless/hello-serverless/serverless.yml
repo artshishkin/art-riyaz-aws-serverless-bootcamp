@@ -13,3 +13,11 @@ provider:
 functions:
   hello:
     handler: handler.hello
+  addFunction:
+    handler: add.handler
+    memorySize: 128
+    events:
+      - http:
+          path: math/add
+          method: post
+          cors: true
