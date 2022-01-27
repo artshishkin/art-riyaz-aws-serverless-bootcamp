@@ -623,4 +623,18 @@ Waiting for
    -  `sls remove`
 2.  Override parameters (i.e. stage)
    -  `sls deploy --stage prod`
+
+#####  168. VPC Configuration for Lambda Functions using the Serverless Framework
+
+VPC console
+-  Security Groups
+-  Default: `sg-24aebf45`
+-  Subnets: copy 2 of 3 subnets
+-  Deploy **entire stack**
+-  View Lambda Role
+   -  Attached policy: AWSLambdaVPCAccessExecutionRole
+
+
+
+
    

@@ -15,6 +15,12 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    vpc:
+      securityGroupIds:
+        - sg-24aebf45
+      subnetIds:
+        - subnet-ade616e0
+        - subnet-5d30e626
   addFunction:
     handler: add.handler
     events:
