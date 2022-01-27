@@ -1,4 +1,4 @@
-###  Serverless API Gateway math add operation
+###  Serverless API Gateway math add operation LAMBDA-PROXY Integration
 POST {{serverUrl}}/math/add
 Content-Type: application/json
 
@@ -7,4 +7,13 @@ Content-Type: application/json
   "number2": 5
 }
 
-###
+###  Serverless API Gateway math add operation LAMBDA Integration
+POST {{serverUrl}}/math/addBodyMapping
+Content-Type: application/json
+
+{
+  "input": {
+    "operand1": 13,
+    "operand2": 5
+  }
+}
