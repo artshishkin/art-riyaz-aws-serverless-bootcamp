@@ -49,6 +49,23 @@ Resources:
             Path: /users/{userId}
             Method: get
 
+  UpdateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: put.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref UsersTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UsersTable
+      Events:
+        UpdateUser:
+          Type: Api
+          Properties:
+            Path: /users/{userId}
+            Method: put
+
   DeleteUserFunction:
     Type: AWS::Serverless::Function
     Properties:

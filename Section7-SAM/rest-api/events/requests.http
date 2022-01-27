@@ -14,6 +14,18 @@ Content-Type: application/json
 GET {{serverUrl}}/users/8c8a5df6-561b-4926-a293-565048cb8b12
 Accept: application/json
 
+### Update User
+PUT {{serverUrl}}/users/a9fc90f5-c00b-45a0-ade5-7fbc7eedc1c6
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "Kate",
+  "lastName": "Shyshkina",
+  "email": "kate.shyshkina@mailinator.com",
+  "website": "example.shyshkin.net"
+}
+
 ### Delete User
 DELETE {{serverUrl}}/users/8c8a5df6-561b-4926-a293-565048cb8b12
 Accept: application/json
