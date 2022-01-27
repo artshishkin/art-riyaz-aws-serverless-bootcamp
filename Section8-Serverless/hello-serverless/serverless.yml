@@ -31,3 +31,30 @@ functions:
           path: math/add
           method: post
           cors: true
+
+  addBodyMapping:
+    handler: add-body-mapping.handler
+    events:
+      - http:
+          path: math/addBodyMapping
+          method: post
+          cors: true
+          integration: lambda
+          request:
+            template:
+              application/json: >
+                #set($inputRoot = $input.path('$'))
+                {
+                  "number1": $inputRoot.input.operand1,
+                  "number2": $inputRoot.input.operand2
+                }
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+              Content-Type: "'application/json'"
+            template: >
+              #set($inputRoot = $input.path('$'))
+              {
+                "result": $inputRoot
+              }
+
