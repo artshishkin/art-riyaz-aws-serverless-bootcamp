@@ -640,6 +640,14 @@ VPC console
 -  `npm install --save-dev serverless-offline`
 -  `sls offline`
 
+#####  170. Accessing CloudWatch Logs using the Serverless Framework
+
+-  `sls logs -f addFunction -s dev`
+-  `sls logs -f addFunction` (with default stage)
+-  `sls logs -f addFunction --startTime 5m` (last 5 minutes ~~deprecated~~)
+-  `sls logs -f addFunction --tail`
+
+
 
 
 

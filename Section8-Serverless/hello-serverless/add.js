@@ -8,14 +8,17 @@ module.exports.handler = async (event) => {
     let {number1, number2} = body;
 
     const result = number1 + number2;
+    const output = {
+        number1: number1,
+        number2: number2,
+        result: result
+    };
+    console.log(output);
+
     return {
         statusCode: 200,
         body: JSON.stringify(
-            {
-                number1: number1,
-                number2: number2,
-                result: result
-            },
+            output,
             null,
             2
         ),
