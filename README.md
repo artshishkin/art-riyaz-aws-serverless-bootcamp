@@ -647,7 +647,22 @@ VPC console
 -  `sls logs -f addFunction --startTime 5m` (last 5 minutes ~~deprecated~~)
 -  `sls logs -f addFunction --tail`
 
+####  Section 9: Automating Serverless Deployment with AWS CI/CD Tools
 
+#####  174. Using AWS CodeCommit for Source Control
+
+Create new project `sls-cicd` outside this Git repo to prevent possible conflicts with GitHub origin 
+
+#####  175. Setting up a Local Git Repository
+
+-  `git init`
+-  add `.gitignore`
+-  `git status`
+-  `git checkout -b dev` - create new branch dev
+-  `git status` - on branch dev
+-  `git add .` - add to commit all the files from current folder 
+-  `git commit -am "first commit"`
+-  `git checkout -b master` - create new branch master
 
 
 
