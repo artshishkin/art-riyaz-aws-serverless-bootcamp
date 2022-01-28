@@ -1,0 +1,21 @@
+service: sls-cicd
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  profile: serverless-admin
+  stage: dev
+  region: eu-north-1
+  memorySize: 128
+  timeout: 3
+
+functions:
+  hello:
+    handler: logger.handler
+    events:
+      - http:
+          path: message
+          method: get
