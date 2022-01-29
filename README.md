@@ -664,6 +664,44 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 -  `git commit -am "first commit"`
 -  `git checkout -b master` - create new branch master
 
+#####  176. Using AWS CodeCommit for Source Control
+
+1.  Create Repository
+   -  CodeCommit Console
+   -  Create Repository
+      -  Name: `sls-cicd-repo`
+      -  Description: `Serverless CI/CD Demo Repository`
+2.  Create User
+   -  IAM Console
+   -  Users -> Add User
+      -  Name: `git-service-user`
+      -  Access type: `Access key - Programmatic access`
+      -  Permissions -> Attach directly -> `AWSCodeCommitFullAccess`
+      -  Create user
+      -  **NO NEED TO SAVE ACCESS KEYS**
+      -  Close
+3.  HTTPS Git credentials for AWS CodeCommit
+   -  IAM Console -> Users -> git-service-user
+   -  Security credentials
+      -  HTTPS Git credentials for AWS CodeCommit
+      -  Generate credentials -> Download
+4.  Get Repository URL
+   -  CodeCommit Console
+   -  `sls-cicd-repo`
+5.  Add origin repo      
+   -  `git remote add origin https://git-codecommit.eu-north-1.amazonaws.com/v1/repos/sls-cicd-repo`
+6.  Switch to dev branch
+   -  `git checkout dev`
+7.  Push local branch dev to origin
+   -  `git push --set-upstream origin dev`
+   -  provide credentials (I was not asked because previously had creds for art_admin user)
+8.  Push master branch
+   -  `git checkout master`
+   -  `git status`
+   -  `git push --set-upstream origin master`
 
 
-   
+
+
+
+
