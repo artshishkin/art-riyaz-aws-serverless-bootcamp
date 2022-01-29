@@ -700,6 +700,24 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  `git status`
    -  `git push --set-upstream origin master`
 
+#####  177. Merging Git Branches and Pushing Updates to CodeCommit
+
+1.  Switch to dev branch
+   -  `git checkout dev`
+2.  Modify code
+3.  Commit changes
+   -  `git commit -am "v2"`
+4.  Merge master with dev
+   -  `git checkout master`
+   -  `git merge dev`
+5.  Push master branch to CodeCommit
+   -  `git push`
+6.  Push dev branch to CodeCommit
+   -  `git checkout dev`
+   -  `git push`
+7.  Change default branch to master
+   -  CodeCommit console -> Settings -> Default branch -> master -> Save 
+
 
 
 
