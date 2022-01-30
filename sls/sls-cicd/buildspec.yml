@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo  Installing Serverless...
+      - npm install -g serverless@2
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies
+      - npm install
+
+  build:
+    commands:
+      - echo Deployment started on `date`
+      - echo Deploying the Serverless Framework
+      - sls deploy -v -s $ENV_NAME
+  post_build:
+    commands:
+      - echo Deployment completed on `date`
+
