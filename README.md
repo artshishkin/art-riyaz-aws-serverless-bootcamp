@@ -740,6 +740,13 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
       -  ENV_NAME: dev
    -  Save
 
+#####  181. AWS CodeBuild in Action
+
+-  CodeBuild console
+   -  Build project -> sls-cicd
+   -  Start build
+
+
 
 
 
