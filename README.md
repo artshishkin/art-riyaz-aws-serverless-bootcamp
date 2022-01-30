@@ -718,6 +718,30 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 7.  Change default branch to master
    -  CodeCommit console -> Settings -> Default branch -> master -> Save 
 
+#####  178. Using AWS CodeBuild for Continuous Integration of Serverless Projects
+
+1.  Create Role for CodeBuild
+   -  IAM console -> Role -> Create
+   -  AWS Service -> Code Build -> AdministratorAccess
+   -  Role name: CodeBuild_Serverless_Admin
+2.  Create CodeBuild project 
+   -  CodeBuild Console -> create project
+   -  Project name: `sls-cicd`
+   -  Source provider: AWS CodeCommit
+   -  Repository: `sls-cicd-repo`
+   -  Branch: master
+   -  Environment image: Managed image      
+   -  Operating System: Amazon Linux 2
+   -  Runtime: Standard
+   -  Use a buildspec file: buildspec.yml
+   -  Service Role: CodeBuild_Serverless_Admin
+   -  Additional configuration: 
+      -  Environment variables:
+      -  ENV_NAME: dev
+   -  Save
+
+
+
 
 
 
