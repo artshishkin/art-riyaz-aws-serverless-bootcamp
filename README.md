@@ -746,6 +746,24 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  Build project -> sls-cicd
    -  Start build
 
+#####  182. Using AWS CodePipeline for Continuous Delivery of Serverless Projects
+
+-  CodePipeline console
+   -  Create pipeline
+   -  Name: `sls-cicd-pipeline`
+   -  Source provider: AWS CodeCommit
+   -  Repository: `sls-cicd-repo`
+   -  Branch: master
+   -  Build provider: AWS CodeBuild
+   -  Project name: `sls-cicd`
+   -  Skip deploy stage
+   -  Create pipeline
+-  Modify source code
+   -  Commit
+   -  Push to master
+
+
+
 
 
 
