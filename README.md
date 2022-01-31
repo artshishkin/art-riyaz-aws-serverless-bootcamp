@@ -762,7 +762,42 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  Commit
    -  Push to master
 
+#####  183. Adding Manual Approval before Production Deployment with AWS CodePipeline
 
+1.  Add manual approval
+   -  CodePipeline console
+   -  `sls-cicd-pipeline` -> Edit
+   -  after `Build` add stage
+      -  Name: `ApproveForProduction`
+   -  Add Action group
+      -  Action name: `MyApprove`
+      -  Action provider: Manual approval
+      -  SNS topic ARN - optional
+         -  Create new SNS topic
+         -  Name: `sls-cicd-approval`
+         -  Create subscription
+            -  Protocol: Email
+            -  Endpoint: <my email>
+         -  Visit Email -> Confirm subscription
+      -  URL for review
+         -  for example `https://53fdsmnq7i.execute-api.eu-north-1.amazonaws.com/dev/message`
+      -  Comments:
+         -  Kindly review and approve
+2.  Add production build
+   -  Add stage: `ProdBuild`
+      -  Add Action group: `CodeBuildProd` 
+         -  Action provider: CodeBuild
+         -  Project name: create new project
+            -  `sls-cicd-prod`
+            -  Operating system: Amazon Linux 2
+            -  Runtime: Standard
+            -  Role: `CodeBuild_Serverless_Admin`   
+            -  Timeout: 5 minutes
+            -  Environment Variables:
+               -  ENV_NAME: prod
+            -  Continue to CodePipeline
+         -  Input artifact: SourceArtifact
+   -  Save
 
 
 
