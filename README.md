@@ -799,6 +799,15 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
          -  Input artifact: SourceArtifact
    -  Save
 
+#####  184. Automated Production Deployment with AWS CodePipeline in Action
+
+1.  Change Source Code
+   -  commit
+   -  push
+2.  Check email
+3.  Approve or reject
+   -  Review
+   -  `Awesome work. Approved`
 
 
 

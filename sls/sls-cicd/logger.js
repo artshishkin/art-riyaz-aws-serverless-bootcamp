@@ -8,7 +8,7 @@ module.exports.handler = async (event) => {
         body: JSON.stringify(
             {
                 message: 'Serverless CI/CD Demo',
-                version: "v3.0",
+                version: "v4.0",
                 timestamp: moment().unix()
             },
             null,
