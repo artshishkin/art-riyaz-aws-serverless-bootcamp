@@ -809,6 +809,16 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  Review
    -  `Awesome work. Approved`
 
+####  Section 12: Demo Project - Building Serverless REST API using the Serverless Framework
+
+#####  197. Project Overview and Initial Setup
+
+-  `sls create -t aws-nodejs -p sls-notes-backend`
+-  `npm init -y`   
+-  `npm install --save aws-sdk moment underscore uuid`
+
+
+
 
 
 
