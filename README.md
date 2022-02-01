@@ -842,6 +842,23 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 6.  Set default branch to master
    -  CodeCommit console -> Settings -> Default branch -> master
 
+#####  200. Setting up the CI/CD Pipeline for Deployment Automation
+
+1.  Create pipeline
+   -  CodePipeline console
+   -  Create pipeline: `sls-notes-backend-pipeline`
+   -  Branch: `master`
+   -  Build provider: `CodeBuild`
+      -  Create project: `sls-notes-backend-codebuild`
+      -  Existing role: CodeBuild_Serverless_Admin
+      -  Environment variable:
+         -  ENV_NAME: `prod`
+      -  Continue to CodePipeline
+   -  Skip deployment stage
+   -  Create pipeline
+2.  Create buildspec.yml
+3.  Commit, push
+
 
 
 
