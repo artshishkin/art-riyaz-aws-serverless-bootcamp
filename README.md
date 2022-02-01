@@ -817,6 +817,39 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 -  `npm init -y`   
 -  `npm install --save aws-sdk moment underscore uuid`
 
+#####  199. Setting up the GIT Repository for Source Control with CodeCommit
+
+1.  Init Git for sls-notes-backend
+   -  `git init`
+   -  `git checkout -b master`
+   -  `git checkout -b dev`
+   -  `git add .`
+   -  `git commit -am "first commit"`
+2.  Create new remote repository   
+   -  CodeCommit console -> 
+   -  Create repository: `sls-notes-backend-repo`
+   -  Copy repo's URL
+3.  Add Remote origin into git
+   -  `git remote add origin <repo's URL>`
+   -  `git remote -v` - verify origin
+4.  Push dev branch to origin
+   -  `git status` - check everything is ok
+   -  `git push --set-upstream origin dev`
+5.  Push master branch to origin
+   -  `git checkout -b master`
+   -  `git status` - all ok
+   -  `git push --set-upstream origin master`
+6.  Set default branch to master
+   -  CodeCommit console -> Settings -> Default branch -> master
+
+
+
+
+
+
+
+
+
 
 
 
