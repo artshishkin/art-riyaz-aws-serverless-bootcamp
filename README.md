@@ -890,6 +890,25 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  shyshkin.net
    -  NS
 
+#####  213. Creating the API Gateway Custom Domain using the Serverless Framework
+
+1.  API Gateway console
+   -  Custom domain names -> NO
+2.  Create domain
+   -  `sls create_domain`
+3.  Verify custom domain name was created
+   -  API Gateway console
+   -  Custom domain names -> notesapi.shyshkin.net
+   -  API Mappings:
+      -  No API mappings have been configured for this domain
+      -  need to redeploy API
+4.  Redeploy API
+   -  git commit
+   -  git push
+5.  Wait for pipeline to complete
+6.  Verify API Mappings
+7.  Verify `notesapi.shyshkin.net` in Route 53
+
 
 
 
