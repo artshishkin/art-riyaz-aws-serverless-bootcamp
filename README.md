@@ -914,6 +914,14 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 -  Test through http client
    -  https://notesapi.shyshkin.net/v1/notes
 
+####  Section 13: Demo Project - Building a Serverless Web App using S3 and CloudFront
+
+#####  216. Running the Web App
+
+-  `npm run build:watch`
+-  'npm start' - will start local-server.js (NextJS)
+-  sls-notes-backend> `sls offline` - start rest api locally
+-  go http://localhost:4000
 
 
 

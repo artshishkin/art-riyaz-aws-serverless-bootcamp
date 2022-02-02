@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 declare const API_ROOT: string;
 declare const STAGE: string;
@@ -13,14 +13,14 @@ export class NotesApiService {
     setOptions() {
         this.options = {
             headers: {
-                app_user_id: 'test_user',
-                app_user_name: 'Test User'
+                app_user_id: '123454321',
+                app_user_name: 'Art'
             }
         };
     }
 
     addNote(item) {
-        let path = STAGE + '/note';
+        let path = STAGE + '/notes';
         let endpoint = API_ROOT + path;
         
         let itemData;
@@ -41,7 +41,7 @@ export class NotesApiService {
     }
 
     updateNote(item) {
-        let path = STAGE + '/note';
+        let path = STAGE + `/notes/n/${item.note_id}`;
         let endpoint = API_ROOT + path;
         
         let itemData;
@@ -60,11 +60,11 @@ export class NotesApiService {
             Item: itemData
         };
         this.setOptions();
-        return this.httpClient.patch(endpoint, reqBody, this.options);
+        return this.httpClient.put(endpoint, reqBody, this.options);
     }
 
     deleteNote(timestamp) {
-        let path = STAGE + '/note/t/' + timestamp;
+        let path = STAGE + '/notes/t/' + timestamp;
         let endpoint = API_ROOT + path;
         this.setOptions();
         return this.httpClient.delete(endpoint, this.options);

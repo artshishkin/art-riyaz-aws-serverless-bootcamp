@@ -4,7 +4,7 @@ var commonConfig = require('./webpack.config.common.js');
 const path = require('path');
 
 const API_ROOT = 'http://localhost:3000';
-const STAGE = '';
+const STAGE = '/prod';
 const METADATA = webpackMerge(commonConfig.metadata, {
     API_ROOT: API_ROOT,
     STAGE: STAGE
