@@ -868,6 +868,28 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 -  `npm install --save-dev serverless-domain-manager`
 
 
+#####  212. Adding SSL Certificate to the Custom Domain using ACM
+
+1.  Request certificate 
+   -  ACM Console
+   -  Switch to **US-EAST-1**
+   -  Request certificate -> Request a public certificate
+   -  Fully qualified domain name: `shyshkin.net`
+   -  Add another name to this certificate: `*.shyshkin.net`
+   -  Select validation method: DNS
+   -  Request
+2.  Validate ownership
+   -  Certificates -> pending validation
+   -  Create Records in Route53
+   -  Wait for a few minutes
+3.  Add name to the certificate
+   -  Certificates -> Tags -> Manage
+   -  Name: shyshkin.net
+4.  Check propagation is completed
+   -  dnschecker.org
+   -  shyshkin.net
+   -  NS
+
 
 
 
