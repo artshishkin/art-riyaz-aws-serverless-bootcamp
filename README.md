@@ -909,7 +909,10 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 6.  Verify API Mappings
 7.  Verify `notesapi.shyshkin.net` in Route 53
 
+#####  214. Live API in Action
 
+-  Test through http client
+   -  https://notesapi.shyshkin.net/v1/notes
 
 
 
