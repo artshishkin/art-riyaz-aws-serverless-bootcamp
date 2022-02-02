@@ -64,4 +64,4 @@ hs_err_pid*
 .serverless/
 
 dependency-reduced-pom.xml
-package-lock.json
+#package-lock.json
