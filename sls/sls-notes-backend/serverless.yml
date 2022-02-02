@@ -10,6 +10,19 @@ frameworkVersion: '3'
 plugins:
   - serverless-offline
 
+custom:
+  allowedHeaders:
+    - Accept
+    - Content-Type
+    - Content-Length
+    - Authorization
+    - X-Amz-Date
+    - X-Api-Key
+    - X-Amz-Security-Token
+    - X-Amz-User-Agent
+    - app_user_id
+    - app_user_name
+
 provider:
   name: aws
   runtime: nodejs14.x
@@ -30,8 +43,53 @@ provider:
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}"
 
 functions:
-  hello:
-    handler: handler.hello
+  add-note:
+    handler: api/add-note.handler
+    description: POST /notes
+    events:
+      - http:
+          path: notes
+          method: post
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+  get-note:
+    handler: api/get-note.handler
+    description: GET /notes/n/{note_id}
+    events:
+      - http:
+          path: notes/n/{note_id}
+          method: get
+          cors: true
+  get-notes:
+    handler: api/get-notes.handler
+    description: GET /notes
+    events:
+      - http:
+          path: notes
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+  update-note:
+    handler: api/update-note.handler
+    description: PUT /notes/n/{note_id}
+    events:
+      - http:
+          path: notes/n/{note_id}
+          method: put
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+  delete-note:
+    handler: api/delete-note.handler
+    events:
+      - http:
+          path: notes/t/{timestamp}
+          method: delete
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
 
 resources:
   Resources:
