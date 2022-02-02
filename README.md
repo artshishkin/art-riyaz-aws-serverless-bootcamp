@@ -863,6 +863,10 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 
 -  `sls offline`
 
+#####  210. Adding a Custom Domain to the API using the Serverless Framework
+
+-  `npm install --save-dev serverless-domain-manager`
+
 
 
 

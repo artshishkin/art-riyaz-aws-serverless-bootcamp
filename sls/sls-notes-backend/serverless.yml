@@ -9,6 +9,7 @@ frameworkVersion: '3'
 
 plugins:
   - serverless-offline
+  - serverless-domain-manager
 
 custom:
   allowedHeaders:
@@ -22,6 +23,12 @@ custom:
     - X-Amz-User-Agent
     - app_user_id
     - app_user_name
+  customDomain:
+    domainName: notesapi.shyshkin.net
+    basePath: 'v1'
+    stage: ${self:provider.stage}
+    certificateName: shyshkin.net
+    createRoute53Record: true
 
 provider:
   name: aws
