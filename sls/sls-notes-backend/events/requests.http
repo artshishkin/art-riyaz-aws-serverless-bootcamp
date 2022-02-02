@@ -53,3 +53,18 @@ Accept: application/json
 app_user_id: 123454321
 app_user_name: Art
 
+###  Get single note
+GET {{serverUrl}}/notes/n/{{global_note_id}}
+Accept: application/json
+app_user_id: 123454321
+app_user_name: Art
+
+###  Delete  note
+DELETE {{serverUrl}}/notes/t/{{global_timestamp}}
+Accept: application/json
+app_user_id: 123454321
+app_user_name: Art
+
+
+
+

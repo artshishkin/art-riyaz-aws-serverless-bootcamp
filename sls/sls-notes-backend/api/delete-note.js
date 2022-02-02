@@ -15,7 +15,7 @@ exports.handler = async (event) => {
 
     try {
         const user_id = util.getUserId(event.headers);
-        const timestamp = decodeURIComponent(event.pathParameters.timestamp);
+        const timestamp = parseInt(event.pathParameters.timestamp);
 
         const data = await dynamoDb.delete({
             TableName: tableName,
