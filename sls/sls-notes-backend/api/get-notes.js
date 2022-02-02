@@ -12,10 +12,35 @@ exports.handler = async (event) => {
 
     try {
 
+        const query = event.queryStringParameters;
+        const limit = query?.limit || 5;
+        const userId = util.getUserId(event.headers);
+
+        const params = {
+            TableName: tableName,
+            KeyConditionExpression: 'user_id = :uId',
+            ExpressionAttributeValues: {
+                ':uId': userId
+            },
+            Limit: limit,
+            ScanIndexForward: false
+        };
+
+        const startTimestamp = query?.start || 0;
+
+        if (startTimestamp > 0) {
+            params.ExclusiveStartKey = {
+                user_id: userId,
+                timestamp: startTimestamp
+            }
+        }
+
+        const data = await dynamoDb.query(params).promise();
+
         return {
             statusCode: 200,
             headers: util.getResponseHeaders(),
-            body: JSON.stringify('')
+            body: JSON.stringify(data)
         };
 
     } catch (err) {
