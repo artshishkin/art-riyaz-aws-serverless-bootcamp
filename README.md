@@ -859,6 +859,10 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 2.  Create buildspec.yml
 3.  Commit, push
 
+#####  207. Testing the REST API Locally using the Serverless Offline Plugin
+
+-  `sls offline`
+
 
 
 

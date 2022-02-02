@@ -26,7 +26,7 @@ exports.handler = async (event) => {
             ScanIndexForward: false
         };
 
-        const startTimestamp = query?.start || 0;
+        const startTimestamp = +query?.start || 0;
 
         if (startTimestamp > 0) {
             params.ExclusiveStartKey = {
@@ -34,6 +34,8 @@ exports.handler = async (event) => {
                 timestamp: startTimestamp
             }
         }
+
+        console.log(JSON.stringify(params));
 
         const data = await dynamoDb.query(params).promise();
 

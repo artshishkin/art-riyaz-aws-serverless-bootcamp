@@ -1,0 +1,55 @@
+###  Create new note
+POST {{serverUrl}}/notes
+Content-Type: application/json
+app_user_id: 123454321
+app_user_name: Art
+
+{
+  "Item": {
+    "title": "My note {{$randomInt}}",
+    "content": "Content {{$randomInt}}",
+    "category": "general"
+  }
+}
+
+> {%
+   client.global.set("global_note_id", response.body.note_id);
+   client.global.set("global_timestamp", response.body.timestamp);
+   %}
+
+###  Update note
+PUT {{serverUrl}}/notes/n/{{global_note_id}}
+Content-Type: application/json
+app_user_id: 123454321
+app_user_name: Art
+
+{
+  "Item": {
+    "timestamp": {{global_timestamp}},
+    "note_id": "{{global_note_id}}",
+    "title": "My note {{$randomInt}}",
+    "content": "Content {{$randomInt}}",
+    "category": "general"
+  }
+}
+
+###  Get all notes (limit by default 5)
+GET {{serverUrl}}/notes
+Accept: application/json
+app_user_id: 123454321
+app_user_name: Art
+
+###  Get all notes (limit by 3)
+GET {{serverUrl}}/notes?limit=3
+Accept: application/json
+app_user_id: 123454321
+app_user_name: Art
+
+> {% client.global.set("global_last_timestamp", response.body.LastEvaluatedKey.timestamp); %}
+
+###  Get all notes from next page (limit by 3)
+GET {{serverUrl}}/notes?limit=3&start={{global_last_timestamp}}
+Accept: application/json
+app_user_id: 123454321
+app_user_name: Art
+
