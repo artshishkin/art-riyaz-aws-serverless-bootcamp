@@ -1,3 +1,6 @@
+/*
+ *  DELETE /notes/t/{timestamp}
+ */
 'use strict';
 
 const AWS = require('aws-sdk');
@@ -11,11 +14,20 @@ const util = require('./util');
 exports.handler = async (event) => {
 
     try {
+        const user_id = util.getUserId(event.headers);
+        const timestamp = decodeURIComponent(event.pathParameters.timestamp);
+
+        const data = await dynamoDb.delete({
+            TableName: tableName,
+            Key: {
+                user_id: user_id,
+                timestamp: timestamp
+            }
+        }).promise();
 
         return {
             statusCode: 200,
-            headers: util.getResponseHeaders(),
-            body: JSON.stringify('')
+            headers: util.getResponseHeaders()
         };
 
     } catch (err) {
