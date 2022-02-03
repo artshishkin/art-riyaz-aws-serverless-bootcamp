@@ -966,7 +966,10 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  `git checkout -b dev`
    -  `git push --set-upstream origin dev`
 
+#####  220. Automating Serverless Application Deployment with AWS CodePipeline
 
+-  Create pipeline in CodePipeline
+   -  `sls-notes-webapp-pipeline`
 
 
 
