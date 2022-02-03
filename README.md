@@ -1029,3 +1029,10 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  Prefix: `logs/notesapp.shyshkin.net/cdn/`
    -  Save changes
 
+#####  224. Updating Route 53 Configuration to use the CloudFront Distribution
+
+-  Route 53
+   -  notesapp.shyshkin.net -> Edit Record
+   -  Alias to CloudFront distribution
+      -  `d12kfvjrz2b8er.cloudfront.net`
+
