@@ -971,9 +971,25 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 -  Create pipeline in CodePipeline
    -  `sls-notes-webapp-pipeline`
 
+#####  221. Static Website Hosting and Serverless Access Logging using S3
 
-
-
-
+1.  Enable static website hosting
+   -  S3 console
+   -  Properties
+   -  Static Website Hosting
+   -  Edit
+      -  Enable
+      -  Host a static website
+      -  Index document - index.html 
+      -  Error document - index.html 
+2.  Visit website
+   -  `http://notesapp.shyshkin.net.s3-website.eu-north-1.amazonaws.com`
+3.  Create bucket for logs
+   -  `art-sls-logs`
+4.  Enable Server access logging for bucket `notesapp.shyshkin.net`
+   -  Properties
+   -  Server access logging
+   -  Enable
+   -  Target bucket: `s3://art-sls-logs/logs/notesapp.shyshkin.net/access/`
 
 
