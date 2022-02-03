@@ -923,7 +923,32 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 -  sls-notes-backend> `sls offline` - start rest api locally
 -  go http://localhost:4000
 
+#####  218. Automating Serverless Frontend Deployment to S3 with AWS CodeBuild
 
+1.  Manually create S3 Bucket
+   -  S3 console
+   -  Create bucket: `notesapp.shyshkin.net`
+   -  Region: `eu-north-1`
+   -  Block all public access: false
+   -  Create bucket
+2.  Modify Bucket policy
+   -  Permissions -> Bucket policy
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Allow all users to read web app content",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::notesapp.shyshkin.net/*"
+        }
+    ]
+}
+```
+3.  Add content to S3 bucket
+   -  `aws s3 sync ./public/ s3://notesapp.shyshkin.net`
 
 
 
