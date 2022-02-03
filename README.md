@@ -950,8 +950,21 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
 3.  Add content to S3 bucket
    -  `aws s3 sync ./public/ s3://notesapp.shyshkin.net`
 
+#####  219. Setting up Source Control with Git and AWS CodeCommit
 
-
+1.  Create repository
+   -  CodeCommit console
+   -  create repo `sls-notes-webapp-repo`
+2.  Build app for prod
+   -  `npm run build:prod`
+3.  Init git
+   -  `git init`
+   -  `git add .`
+   -  `git commit -am "init webapp"`
+   -  `git remote add origin https://git-codecommit.eu-north-1.amazonaws.com/v1/repos/sls-notes-webapp-repo`
+   -  `git push --set-upstream origin master`
+   -  `git checkout -b dev`
+   -  `git push --set-upstream origin dev`
 
 
 
