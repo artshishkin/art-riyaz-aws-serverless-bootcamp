@@ -1036,3 +1036,11 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  Alias to CloudFront distribution
       -  `d12kfvjrz2b8er.cloudfront.net`
 
+#####  226. Invalidating CloudFront Cache Automatically using CodeBuild
+
+Copy distribution ID from ARN
+-  `arn:aws:cloudfront::392971033516:distribution/E2XH5SB8MO9S0Y`
+-  `E2XH5SB8MO9S0Y`
+-  Update buildspec.yml file
+
+
