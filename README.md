@@ -1002,4 +1002,18 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  s3-website.eu-north-1.amazonaws.com
 -  Test it `http://notesapp.shyshkin.net`
 
+#####  223. Distributing the Serverless App over AWS CloudFront
+
+-  CloudFront console
+   -  Create distribution
+   -  Origin domain: `notesapp.shyshkin.net.s3.eu-north-1.amazonaws.com`
+   -  Viewer protocol policy: `Redirect HTTP to HTTPS`
+   -  Compress objects automatically: `yes`
+   -  Alternate domain name (CNAME): `notesapp.shyshkin.net`
+   -  Custom SSL certificate: `shyshkin.net`
+   -  Default root object: index.html
+   -  Standard logging: Off (for now)
+   -  Create distribution
+
+
 
