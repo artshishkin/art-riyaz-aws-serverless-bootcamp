@@ -992,4 +992,14 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  Enable
    -  Target bucket: `s3://art-sls-logs/logs/notesapp.shyshkin.net/access/`
 
+#####  222. Route 53 Configuration to Serve the Serverless App from a Custom Domain
+
+-  Route 53 console
+   -  Create record `notesapp`
+   -  Alias
+   -  Alias to S3 website endpoint
+   -  Region: eu-north-1
+   -  s3-website.eu-north-1.amazonaws.com
+-  Test it `http://notesapp.shyshkin.net`
+
 
