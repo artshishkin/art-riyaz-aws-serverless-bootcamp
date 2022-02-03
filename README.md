@@ -1015,5 +1015,17 @@ Create new project `sls-cicd` outside this Git repo to prevent possible conflict
    -  Standard logging: Off (for now)
    -  Create distribution
 
+#####  223.1 Enable Standard Logging for CloudFront distribution
 
+1.  Enable access control list ACL of logs bucket
+   -  S3 console -> `art-sls-logs`
+   -  Permissions -> Object Ownership -> Edit
+   -  ACLs enabled
+   -  Object Ownership: Bucket owner preferred
+2.  Enable CloudFront Standard logging
+   -  Distribution -> General -> Settings -> Edit
+   -  Standard logging -> On
+   -  S3 Bucket: `art-sls-logs.s3.amazonaws.com`
+   -  Prefix: `logs/notesapp.shyshkin.net/cdn/`
+   -  Save changes
 
