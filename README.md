@@ -1115,3 +1115,15 @@ Copy distribution ID from ARN
 -  got an **error** 
    -  Cannot read properties of undefined (reading 'length')
 
+#####  241. Debugging API Gateway Errors using CloudWatch
+
+1.  Enable CloudWatch Logs for API
+   -  API Gateway console
+   -  Stages -> prod -> Logs/Tracing
+   -  Enable CloudWatch Logs
+   -  Log Level: INFO
+   -  Log full requests/responses data
+   -  Save changes
+
+
+
