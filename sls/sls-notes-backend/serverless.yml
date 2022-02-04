@@ -41,6 +41,7 @@ provider:
   endpointType: regional
   environment:
     NOTES_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    COGNITO_IDENTITY_POOL_ID: eu-north-1:118ea813-9a63-4687-ae51-5a1e954a9fb0
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -61,6 +62,7 @@ functions:
       - http:
           path: notes
           method: post
+          authorizer: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
@@ -71,7 +73,10 @@ functions:
       - http:
           path: notes/n/{note_id}
           method: get
-          cors: true
+          authorizer: aws_iam
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
   get-notes:
     handler: api/get-notes.handler
     description: GET /notes
@@ -79,6 +84,7 @@ functions:
       - http:
           path: notes
           method: get
+          authorizer: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
@@ -89,6 +95,7 @@ functions:
       - http:
           path: notes/n/{note_id}
           method: put
+          authorizer: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
@@ -98,6 +105,7 @@ functions:
       - http:
           path: notes/t/{timestamp}
           method: delete
+          authorizer: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
