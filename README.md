@@ -1107,6 +1107,11 @@ Copy distribution ID from ARN
 
 -  `npm install --save aws4 @types/aws4`
 
+#####  240. Testing the Web App Locally
 
-    
+-  `npm run build:prod`
+-  'npm start' - will start local-server.js (NextJS)
+-  go http://localhost:4000
+-  got an **error** 
+   -  Cannot read properties of undefined (reading 'length')
 
