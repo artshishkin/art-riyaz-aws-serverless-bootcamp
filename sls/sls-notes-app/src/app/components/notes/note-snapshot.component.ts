@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NotesApiService } from '../../services/notes-api/notes-api.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NotesApiService} from '../../services/notes-api/notes-api.service';
 
 @Component({
     selector: 'note-snapshot',

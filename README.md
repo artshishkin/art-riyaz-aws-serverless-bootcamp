@@ -1096,7 +1096,11 @@ Copy distribution ID from ARN
    -  Review Policy
       -  Name: `NotesAppExecuteApiAccess`
 
+#####  235. Integrating Google Authentication with the Serverless Web App
 
-
-
+-  copy new src files
+-  `npm install`
+-  `npm run build:watch`
+-  modify index.html
+   -  
 
