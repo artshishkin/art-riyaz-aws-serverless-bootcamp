@@ -2,7 +2,7 @@
 POST {{serverUrl}}/notes
 Content-Type: application/json
 app_user_id: 123454321
-app_user_name: Art
+app_user_name: 0JDRgNGC0LXQvCDQqNC40YjQutGW0L0=
 
 {
   "Item": {
@@ -21,7 +21,7 @@ app_user_name: Art
 PUT {{serverUrl}}/notes/n/{{global_note_id}}
 Content-Type: application/json
 app_user_id: 123454321
-app_user_name: Art
+app_user_name: 0JDRgNGC0LXQvCDQqNC40YjQutGW0L0=
 
 {
   "Item": {
@@ -37,13 +37,13 @@ app_user_name: Art
 GET {{serverUrl}}/notes
 Accept: application/json
 app_user_id: 123454321
-app_user_name: Art
+app_user_name: 0JDRgNGC0LXQvCDQqNC40YjQutGW0L0=
 
 ###  Get all notes (limit by 3)
 GET {{serverUrl}}/notes?limit=3
 Accept: application/json
 app_user_id: 123454321
-app_user_name: Art
+app_user_name: 0JDRgNGC0LXQvCDQqNC40YjQutGW0L0=
 
 > {% client.global.set("global_last_timestamp", response.body.LastEvaluatedKey.timestamp); %}
 
@@ -51,19 +51,19 @@ app_user_name: Art
 GET {{serverUrl}}/notes?limit=3&start={{global_last_timestamp}}
 Accept: application/json
 app_user_id: 123454321
-app_user_name: Art
+app_user_name: 0JDRgNGC0LXQvCDQqNC40YjQutGW0L0=
 
 ###  Get single note
 GET {{serverUrl}}/notes/n/{{global_note_id}}
 Accept: application/json
 app_user_id: 123454321
-app_user_name: Art
+app_user_name: 0JDRgNGC0LXQvCDQqNC40YjQutGW0L0=
 
 ###  Delete  note
 DELETE {{serverUrl}}/notes/t/{{global_timestamp}}
 Accept: application/json
 app_user_id: 123454321
-app_user_name: Art
+app_user_name: 0JDRgNGC0LXQvCDQqNC40YjQutGW0L0=
 
 
 

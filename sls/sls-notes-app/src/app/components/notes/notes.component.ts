@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import * as _ from "lodash";
-import { NotesApiService } from '../../services/notes-api/notes-api.service';
-import { NotesDataService } from '../../services/notes-data/notes-data.service';
+import {NotesApiService} from '../../services/notes-api/notes-api.service';
+import {NotesDataService} from '../../services/notes-data/notes-data.service';
 
 @Component({
     selector: 'notes',
@@ -60,6 +60,9 @@ export class NotesComponent implements OnInit {
                     }
                 }
             }, err => {
+
+                console.log(err);
+
                 if(err.error && err.error.message) {
                     this.alert = {
                         type: 'danger',
@@ -140,6 +143,9 @@ export class NotesComponent implements OnInit {
                     }
                 }
             }, err => {
+
+                console.log(err);
+
                 if(err.error && err.error.message) {
                     this.alert = {
                         type: 'danger',

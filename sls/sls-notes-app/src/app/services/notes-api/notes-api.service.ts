@@ -41,7 +41,7 @@ export class NotesApiService {
                 let savedCreds = JSON.parse(savedCredsJson);
                 let creds: Credentials = {
                     accessKeyId: savedCreds.Credentials.AccessKeyId,
-                    secretAccessKey: savedCreds.Credentials.SecretAccessKey,
+                    secretAccessKey: savedCreds.Credentials.SecretKey,
                     sessionToken: savedCreds.Credentials.SessionToken
                 };
 
@@ -49,13 +49,13 @@ export class NotesApiService {
                 let signed = signer.sign();
                 this.options.headers = signed.headers;
                 delete this.options.headers.Host;
-
-                this.options.headers.app_user_id = savedCreds.IdenityId;
-                this.options.headers.app_user_name = savedCreds.user_name;
+                this.options.headers.app_user_id = savedCreds.IdentityId;
+                this.options.headers.app_user_name = Buffer.from(savedCreds.user_name).toString('base64');
             }
 
         } catch (err) {
             //do nothing
+            console.log(err);
         }
     }
 
@@ -118,6 +118,9 @@ export class NotesApiService {
         }
         let endpoint = API_ROOT + path;
         this.setOptions(path, 'GET');
+
+        // console.log(this.options);
+
         return this.httpClient.get(endpoint, this.options);
     }
 }
