@@ -38,7 +38,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             headers: util.getResponseHeaders(),
-            body: JSON.stringify(item)
+            body: JSON.stringify(temporarilyAwsCredentials)
         };
 
     } catch (err) {
