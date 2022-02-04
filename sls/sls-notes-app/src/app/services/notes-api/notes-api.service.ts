@@ -66,7 +66,7 @@ export class NotesApiService {
         let itemData;
         itemData = {
             content: item.content,
-            cat: item.cat
+            category: item.category
         };
 
         if (item.title != "") {
@@ -87,7 +87,7 @@ export class NotesApiService {
         let itemData;
         itemData = {
             content: item.content,
-            cat: item.cat,
+            category: item.category,
             timestamp: parseInt(item.timestamp),
             note_id: item.note_id
         };

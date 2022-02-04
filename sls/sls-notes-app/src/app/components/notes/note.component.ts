@@ -34,7 +34,7 @@ export class NoteComponent implements OnInit {
         this.noteForm = this.formBuilder.group({
             'title': [this.note.title ? this.note.title : ''],
             'content': [this.note.content ? this.note.content : '', Validators.required],
-            'cat': [this.note.cat ? this.note.cat : 'general'],
+            'category': [this.note.category ? this.note.category : 'general'],
             'timestamp': [this.note.timestamp],
             'note_id': [this.note.note_id]
         });
