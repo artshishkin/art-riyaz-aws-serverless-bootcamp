@@ -1083,6 +1083,20 @@ Copy distribution ID from ARN
    -  Platform: JavaScript
    -  View code snippet
       
+#####  229. Setting up IAM Role for Cognito Authenticated Users
+
+-  Edit identity pool
+   -  Authenticated role -> view name
+-  IAM console
+   -  Roles: Cognito_ServerlessNotesAppAuth_Role
+   -  Add permissions -> create inline policy
+      -  Service: `ExecuteAPI`
+      -  Actions: `Invoke`
+      -  Resources: `*` (All)
+   -  Review Policy
+      -  Name: `NotesAppExecuteApiAccess`
+
+
 
 
 
