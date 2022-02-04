@@ -1043,4 +1043,32 @@ Copy distribution ID from ARN
 -  `E2XH5SB8MO9S0Y`
 -  Update buildspec.yml file
 
+####  Section 14: Demo Project - Adding Authentication and Authorization to the App with Cognito
+
+#####  227. Creating Google Auth Client for the Serverless Web App
+
+-  google for `google api console`
+-  `https://console.developers.google.com/apis/dashboard`   
+-  Select a project -> New project
+   -  Name: `Serverless Notes App`
+   -  Create
+-  Select project
+-  OAuth consent screen
+   -  External -> create
+   -  App name: `Serverless Notes App`
+   -  Authorized Domains: `shyshkin.net`
+   -  Add test user: `d.art.shyshkin@gmail.com`
+-  Credentials
+   -  Create credentials -> OAuth Client ID
+   -  Application type: Web application
+   -  Name: `Serverless Notes Web App`
+   -  Authorized JavaScript origins
+      -  http://localhost:4000
+      -  https://notesapp.shyshkin.net
+   -  Create
+      -  Copy Client ID
+
+
+
+
 
