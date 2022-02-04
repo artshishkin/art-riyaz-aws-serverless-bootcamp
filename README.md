@@ -1068,7 +1068,21 @@ Copy distribution ID from ARN
    -  Create
       -  Copy Client ID
 
+#####  228. Setting up Federated Identity Access with Cognito
 
+-  Cognito Console
+   -  Manage Identity Pools
+   -  Create new Identity Pool
+      -  Name: `Serverless Notes App`
+      -  Authentication providers:
+         -  Google+: paste <ClientID>
+      -  Create pool
+   -  Identify the IAM roles to use with your new identity pool
+      -  Allow
+-  Getting started with Amazon Cognito
+   -  Platform: JavaScript
+   -  View code snippet
+      
 
 
 
