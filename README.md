@@ -1102,5 +1102,11 @@ Copy distribution ID from ARN
 -  `npm install`
 -  `npm run build:watch`
 -  modify index.html
-   -  
+
+#####  237. Making Signed API Requests from the Frontend Web App – Overview
+
+-  `npm install --save aws4 @types/aws4`
+
+
+    
 
