@@ -6,6 +6,10 @@ const getUserName = (headers) => {
     return headers.app_user_name;
 }
 
+const getIdToken = (headers) => {
+    return headers.Authorization.replace("Bearer ", "").trim();
+}
+
 const getResponseHeaders = () => {
     return {
         'Access-Control-Allow-Origin': '*'
@@ -15,5 +19,6 @@ const getResponseHeaders = () => {
 module.exports = {
     getUserId,
     getUserName,
+    getIdToken,
     getResponseHeaders
 }
