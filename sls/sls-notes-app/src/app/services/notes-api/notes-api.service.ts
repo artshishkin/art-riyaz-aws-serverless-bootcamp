@@ -76,7 +76,7 @@ export class NotesApiService {
         let reqBody = {
             Item: itemData
         };
-        this.setOptions();
+        this.setOptions(path, 'POST', JSON.stringify(reqBody));
         return this.httpClient.post(endpoint, reqBody, this.options);
     }
 
@@ -99,28 +99,25 @@ export class NotesApiService {
         let reqBody = {
             Item: itemData
         };
-        this.setOptions();
+        this.setOptions(path, 'PUT', JSON.stringify(reqBody));
         return this.httpClient.put(endpoint, reqBody, this.options);
     }
 
     deleteNote(timestamp) {
         let path = STAGE + '/notes/t/' + timestamp;
         let endpoint = API_ROOT + path;
-        this.setOptions();
+        this.setOptions(path, 'DELETE');
         return this.httpClient.delete(endpoint, this.options);
     }
 
-    getNotes(start ?)
-        :
-        Observable<any> {
+    getNotes(start ?): Observable<any> {
         let path = STAGE + '/notes?limit=8';
 
-        if (start > 0
-        ) {
+        if (start > 0) {
             path += '&start=' + start;
         }
         let endpoint = API_ROOT + path;
-        this.setOptions();
+        this.setOptions(path, 'GET');
         return this.httpClient.get(endpoint, this.options);
     }
 }
